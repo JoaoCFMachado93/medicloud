@@ -1,0 +1,35 @@
+/* AlbumTree.css */
+.album-tree {
+    width: 250px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+  }
+  
+  .album-tree ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .album {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .album:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .album.selected {
+    background-color: #007aff;
+    color: #fff;
+  }
+  
+  .sub-albums {
+    margin-left: 10px;
+  }
+  

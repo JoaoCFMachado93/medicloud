@@ -1,0 +1,23 @@
+/* ImageGallery.css */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust the width as needed */
+  gap: 20px;
+  max-width: calc(300px * 5 + 20px * 4); /* Ensure maximum of 5 columns */
+  justify-content: start; /* Align items to the start of the grid container horizontally */
+  align-items: start; /* Align items to the start of the grid container vertically */
+}
+
+.image-card {
+  width: 300px; /* Set a fixed width for each image card */
+}
+
+.image-card img {
+  width: 100%; /* Set the width to fill the container */
+  height: 100%; /* Set the height to fill the container */
+  object-fit: cover; /* Scale the image to cover the container */
+}
+
+.image-details {
+  padding: 10px;
+}
