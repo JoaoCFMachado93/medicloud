@@ -18,7 +18,7 @@ const ImageGallery = ({ images, selectedAlbum }) => {
     <div className="image-gallery">
       {filteredImages.map(image => (
         <div key={image.id} className="image-card">
-          <a href={image.url} target="_blank" rel="noreferrer" style={{ display: 'block', width: '100%', height: '100%' }}>
+          <a href={image.url} target="_blank" rel="noreferrer" style={{ display: 'block', width: '100%', height: '65%' }}>
             <img src={image.url} alt={image.description} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </a>
           <div className="image-details">

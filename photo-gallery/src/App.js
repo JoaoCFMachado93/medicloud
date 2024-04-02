@@ -37,7 +37,14 @@ const images = [
   { id: 3, albumId: 1, url: head2, user: 'User 1', date: '2024-03-17', description: 'Sunny beach' },
   { id: 4, albumId: 1, url: head1, user: 'User 2', date: '2024-03-16', description: 'Historic city' },
   { id: 5, albumId: 3, url: leg2, user: 'User 1', date: '2024-03-15', description: 'Cultural landmark' },
-  { id: 6, albumId: 3, url: leg1, user: 'User 1', date: '2024-03-15', description: 'Cultural landmark' }
+  { id: 6, albumId: 3, url: leg1, user: 'User 1', date: '2024-03-15', description: 'Cultural landmark' },
+  { id: 7, albumId: 3, url: leg1, user: 'User 1', date: '2024-03-15', description: 'Cultural landmark' },
+  { id: 8, albumId: 3, url: leg1, user: 'User 1', date: '2024-03-15', description: 'Cultural landmark' },
+  { id: 9, albumId: 3, url: leg1, user: 'User 1', date: '2024-03-15', description: 'Cultural landmark' },
+  { id: 10, albumId: 3, url: leg1, user: 'User 1', date: '2024-03-15', description: 'Cultural landmark' },
+  { id: 11, albumId: 3, url: leg1, user: 'User 1', date: '2024-03-15', description: 'Cultural landmark' },
+  { id: 12, albumId: 3, url: leg1, user: 'User 1', date: '2024-03-15', description: 'Cultural landmark' },
+  { id: 13, albumId: 3, url: leg1, user: 'User 1', date: '2024-03-15', description: 'Cultural landmark' }
 ];
 
 

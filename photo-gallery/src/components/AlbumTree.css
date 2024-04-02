@@ -5,6 +5,7 @@
     padding: 20px;
     border-right: 1px solid #ddd;
     overflow-y: auto;
+    padding-bottom: 1000%;
   }
   
   .album-tree ul {
