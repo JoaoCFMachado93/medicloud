@@ -1,0 +1,66 @@
+openapi: 3.0.3
+
+info:
+  title: API for endoscope
+  description: API for endoscope
+  contact:
+    name: endoscope
+    email: endoscope@localhost
+  version: 1.0.0
+
+tags:
+  - name: directory
+    description: directory API
+
+
+paths:
+
+  /directories:
+    get:
+      tags:
+        - directories
+      summary: Get directories
+      description: Get directories
+      operationId: getDirectories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Directory'
+        '500':
+            description: Internal Server Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/InternalServerError'
+
+
+#############################
+# Components                #
+#############################
+
+components:
+  schemas:
+    Directory:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The directory ID
+        name:
+          type: string
+          description: The directory name
+    InternalServerError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The error message
+        code:
+          type: integer
+          description: The error code

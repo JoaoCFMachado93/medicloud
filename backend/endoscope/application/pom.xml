@@ -11,11 +11,11 @@
 
     <artifactId>application</artifactId>
 
-    <properties>
-
-    </properties>
-
     <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>api</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -24,6 +24,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.sun.jmx</groupId>
+            <artifactId>jmxri</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jdmk</groupId>
+            <artifactId>jmxtools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
