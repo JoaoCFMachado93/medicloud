@@ -30,7 +30,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Directory'
+                  $ref: '#/components/schemas/DirectoryEntity'
         '500':
             description: Internal Server Error
             content:
@@ -45,14 +45,14 @@ paths:
 
 components:
   schemas:
-    Directory:
+    DirectoryEntity:
       type: object
       properties:
-        id:
-          type: string
+        directoryId:
+          type: integer
           format: uuid
           description: The directory ID
-        name:
+        directoryName:
           type: string
           description: The directory name
     InternalServerError:

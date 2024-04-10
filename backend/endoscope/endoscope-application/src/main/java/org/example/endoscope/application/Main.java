@@ -1,9 +1,9 @@
-package org.example;
+package org.example.endoscope.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"org.example"})
+@SpringBootApplication(scanBasePackages = {"org.example.endoscope"})
 public class Main {
 
     protected Main() {
