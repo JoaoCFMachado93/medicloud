@@ -1,4 +1,4 @@
-package org.example.spring.configuration;
+package org.example.spring.configuration.api;
 
 import org.example.api.DirectoriesAPIDelegateImpl;
 import org.example.endoscope.api.openapi.DirectoriesApiDelegate;
