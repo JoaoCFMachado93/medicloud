@@ -30,4 +30,15 @@ public class DirectoriesAPIDelegateImpl implements DirectoriesApiDelegate {
                 .map(directoryConverter::domainToDto)
                 .toList());
     }
+
+    @Override
+    public ResponseEntity<Void> createDirectory(List<DirectoryEntity> directoryEntity) {
+        log.info("Creating the following directories: {}", directoryEntity);
+        var directoryDomainList = directoryEntity.stream()
+                .map(directoryConverter::dtoToDomain)
+                .toList();
+
+        directoryServicePort.createDirectory(directoryDomainList);
+        return ResponseEntity.ok().build();
+    }
 }

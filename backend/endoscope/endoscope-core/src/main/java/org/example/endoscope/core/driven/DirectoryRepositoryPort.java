@@ -8,4 +8,6 @@ public interface DirectoryRepositoryPort {
 
     List<Directory> getDirectories();
 
+    void createDirectory(List<Directory> directories);
+
 }

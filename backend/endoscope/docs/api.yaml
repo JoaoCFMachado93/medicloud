@@ -32,11 +32,35 @@ paths:
                 items:
                   $ref: '#/components/schemas/DirectoryEntity'
         '500':
-            description: Internal Server Error
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    put:
+      tags:
+        - directories
+      summary: Create directory
+      description: Create directory
+      operationId: createDirectory
+      requestBody:
+        description: Directory to create
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DirectoryEntity'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
 
 
 #############################
