@@ -62,6 +62,64 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
 
+  /directories/subDirectories/{directoryId}:
+    get:
+      tags:
+        - directories
+      summary: Get sub directories
+      description: Get sub directories
+      operationId: getSubDirectories
+      parameters:
+        - name: directoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DirectoryEntity'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    put:
+      tags:
+        - directories
+      summary: Create sub directory
+      description: Create sub directory
+      operationId: createSubDirectory
+      parameters:
+        - name: directoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Sub Directory to create
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DirectoryEntity'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
 
 #############################
 # Components                #
@@ -79,6 +137,9 @@ components:
         directoryName:
           type: string
           description: The directory name
+        parentDirectory:
+          type: integer
+          description: The parent directory id
     InternalServerError:
       type: object
       properties:

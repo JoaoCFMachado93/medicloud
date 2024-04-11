@@ -9,4 +9,8 @@ public interface DirectoryServicePort {
     List<Directory> getDirectories();
 
     void createDirectory(List<Directory> directories);
+
+    List<Directory> getSubDirectories(long directoryId);
+
+    void createSubDirectory(List<Directory> subDirectories);
 }

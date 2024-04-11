@@ -11,4 +11,6 @@ public class Directory {
 
     private final long directoryId;
     private final String directoryName;
+    private final long parentDirectory;
+
 }

@@ -28,11 +28,27 @@ public class DirectoryRepository implements DirectoryRepositoryPort {
     }
 
     @Override
-    public void createDirectory(List<Directory> directories) {
+    public void createDirectories(List<Directory> directories) {
         List<DirectoryEntity> directoryEntityList = directories.stream()
                 .map(dbDirectoryConverter::domainToDbo)
                 .toList();
 
         directoryJpaRepository.saveAll(directoryEntityList);
+    }
+
+    @Override
+    public List<Directory> getSubDirectories(long directoryId) {
+        return directoryJpaRepository.findByParentDirectory_DirectoryId(directoryId).stream()
+                .map(dbDirectoryConverter::dboToDomain)
+                .toList();
+    }
+
+    @Override
+    public void createSubDirectories(List<Directory> directories) {
+        List<DirectoryEntity> subDirectoryEntityList = directories.stream()
+                .map(dbDirectoryConverter::domainToDbo)
+                .toList();
+
+        directoryJpaRepository.saveAll(subDirectoryEntityList);
     }
 }

@@ -41,4 +41,26 @@ public class DirectoriesAPIDelegateImpl implements DirectoriesApiDelegate {
         directoryServicePort.createDirectory(directoryDomainList);
         return ResponseEntity.ok().build();
     }
+
+    @Override
+    public ResponseEntity<List<DirectoryEntity>> getSubDirectories(Integer directoryId) {
+        log.info("Fetching sub directories");
+        var subDirectories = directoryServicePort.getSubDirectories(directoryId);
+
+        return ResponseEntity.ok(subDirectories.stream()
+                .map(directoryConverter::domainToDto)
+                .toList());
+    }
+
+    @Override
+    public ResponseEntity<Void> createSubDirectory(Integer directoryId, List<DirectoryEntity> subDirectoryEntity) {
+        log.info("Creating the following sub directories: {}", subDirectoryEntity);
+        var subDirectoryDomainList = subDirectoryEntity.stream()
+                .map(directoryConverter::dtoToDomain)
+                .toList();
+
+        directoryServicePort.createSubDirectory(subDirectoryDomainList);
+        return ResponseEntity.ok().build();
+    }
+
 }

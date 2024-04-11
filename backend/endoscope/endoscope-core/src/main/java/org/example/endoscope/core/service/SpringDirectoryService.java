@@ -25,6 +25,21 @@ public class SpringDirectoryService implements DirectoryServicePort {
             return;
         }
 
-        directoryRepositoryPort.createDirectory(directories);
+        directoryRepositoryPort.createDirectories(directories);
+    }
+
+    @Override
+    public List<Directory> getSubDirectories(long directoryId) {
+        return directoryRepositoryPort.getSubDirectories(directoryId);
+    }
+
+    @Override
+    public void createSubDirectory(List<Directory> subDirectories) {
+        if (subDirectories.isEmpty()) {
+            return;
+        }
+
+        directoryRepositoryPort.createSubDirectories(subDirectories);
     }
 }
+

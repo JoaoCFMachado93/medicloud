@@ -8,6 +8,10 @@ public interface DirectoryRepositoryPort {
 
     List<Directory> getDirectories();
 
-    void createDirectory(List<Directory> directories);
+    void createDirectories(List<Directory> directories);
+
+    List<Directory> getSubDirectories(long directoryId);
+
+    void createSubDirectories(List<Directory> subDirectories);
 
 }
