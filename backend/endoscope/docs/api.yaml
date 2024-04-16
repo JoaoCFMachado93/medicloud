@@ -23,7 +23,7 @@ paths:
   /directories:
     get:
       tags:
-        - directories
+        - directory
       summary: Get directories
       description: Get directories
       operationId: getDirectories
@@ -70,7 +70,7 @@ paths:
   /directories/subDirectories/{directoryId}:
     get:
       tags:
-        - directories
+        - directory
       summary: Get sub directories
       description: Get sub directories
       operationId: getSubDirectories
@@ -97,7 +97,7 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
     put:
       tags:
-        - directories
+        - directory
       summary: Create sub directory
       description: Create sub directory
       operationId: createSubDirectory
