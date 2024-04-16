@@ -4,7 +4,7 @@ import org.example.endoscope.api.DirectoriesAPIDelegateImpl;
 import org.example.endoscope.api.ImagesAPIDelegateImpl;
 import org.example.endoscope.api.mapper.directory.DirectoryConverter;
 import org.example.endoscope.api.mapper.directory.ImageConverter;
-import org.example.endoscope.api.openapi.DirectoriesApiDelegate;
+import org.example.endoscope.api.openapi.DirectoryApiDelegate;
 import org.example.endoscope.api.openapi.ImageApiDelegate;
 import org.example.endoscope.core.driver.DirectoryServicePort;
 import org.example.endoscope.core.driver.ImageServicePort;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class EndoscopeApiConfiguration implements WebMvcConfigurer {
 
     @Bean
-    public DirectoriesApiDelegate directoriesApiDelegate(
+    public DirectoryApiDelegate directoriesApiDelegate(
             DirectoryServicePort directoryServicePort,
             DirectoryConverter directoryConverter) {
         return new DirectoriesAPIDelegateImpl(directoryServicePort, directoryConverter);
