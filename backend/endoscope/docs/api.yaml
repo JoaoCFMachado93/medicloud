@@ -44,7 +44,7 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
     put:
       tags:
-        - directories
+        - directory
       summary: Create directory
       description: Create directory
       operationId: createDirectory
