@@ -11,7 +11,12 @@ info:
 tags:
   - name: directory
     description: directory API
+  - name: image
+    description: image API
 
+  #############################
+  # Directory API             #
+  #############################
 
 paths:
 
@@ -121,6 +126,97 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
 
+  #############################
+  # Image API                 #
+  #############################
+
+  /images/{imageId}:
+    get:
+      tags:
+        - image
+      summary: Get image  by ID
+      description: Get image  by ID
+      operationId: getImageById
+      parameters:
+        - name: imageId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageEntity'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+  /images/directory/{directoryId}:
+    get:
+      tags:
+        - image
+      summary: Get Images by directory ID
+      description: Get Images by directory ID
+      operationId: getImagesByDirectoryId
+      parameters:
+        - name: directoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImageEntity'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    put:
+      tags:
+        - image
+      summary: Create image in directory
+      description: Create image in directory
+      operationId: createImageInDirectory
+      parameters:
+        - name: directoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Image to create
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImageEntity'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
 #############################
 # Components                #
 #############################
@@ -132,7 +228,6 @@ components:
       properties:
         directoryId:
           type: integer
-          format: uuid
           description: The directory ID
         directoryName:
           type: string
@@ -140,6 +235,32 @@ components:
         parentDirectory:
           type: integer
           description: The parent directory id
+    ImageEntity:
+      type: object
+      properties:
+        imageId:
+          type: integer
+          description: The image ID
+        imageName:
+          type: string
+          description: The image name
+        directory:
+          type: integer
+          description: The directory ID where the image belongs
+        uploadedBy:
+          type: string
+          description: The name of the user who uploaded the image
+        uploadDate:
+          type: integer
+          description: The upload date of the image in milliseconds since Unix epoch
+        description:
+          type: string
+          description: Description of the image
+        imageData:
+          type: string
+          format: byte
+          description: Binary image data in base64 format
+
     InternalServerError:
       type: object
       properties:

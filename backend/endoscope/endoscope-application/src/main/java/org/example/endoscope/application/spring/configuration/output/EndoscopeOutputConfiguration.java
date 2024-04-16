@@ -1,9 +1,13 @@
 package org.example.endoscope.application.spring.configuration.output;
 
 import org.example.endoscope.core.driven.DirectoryRepositoryPort;
+import org.example.endoscope.core.driven.ImageRepositoryPort;
 import org.example.endoscope.output.adapter.DirectoryRepository;
+import org.example.endoscope.output.adapter.ImageRepository;
 import org.example.endoscope.output.mapper.directory.DbDirectoryConverter;
+import org.example.endoscope.output.mapper.directory.DbImageConverter;
 import org.example.endoscope.output.repository.DirectoryJpaRepository;
+import org.example.endoscope.output.repository.ImageJpaRepository;
 import org.mapstruct.factory.Mappers;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -25,5 +29,18 @@ public class EndoscopeOutputConfiguration {
     @Bean
     public DbDirectoryConverter dbDirectoryConverter() {
         return Mappers.getMapper(DbDirectoryConverter.class);
+    }
+
+
+    @Bean
+    public ImageRepositoryPort imageRepositoryPort(
+            ImageJpaRepository imageJpaRepository,
+            DbImageConverter dbImageConverter) {
+        return new ImageRepository(imageJpaRepository, dbImageConverter);
+    }
+
+    @Bean
+    public DbImageConverter dbImageConverter() {
+        return Mappers.getMapper(DbImageConverter.class);
     }
 }

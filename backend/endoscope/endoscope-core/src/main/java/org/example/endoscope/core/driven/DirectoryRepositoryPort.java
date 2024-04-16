@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface DirectoryRepositoryPort {
 
+    boolean doesDirectoryExist(long directoryId);
+
     List<Directory> getDirectories();
 
     void createDirectories(List<Directory> directories);

@@ -21,8 +21,13 @@ public class DirectoryRepository implements DirectoryRepositoryPort {
     }
 
     @Override
+    public boolean doesDirectoryExist(long directoryId) {
+        return directoryJpaRepository.existsById(directoryId);
+    }
+
+    @Override
     public List<Directory> getDirectories() {
-        return directoryJpaRepository.findAll().stream()
+        return directoryJpaRepository.findByParentDirectoryIsNull().stream()
                 .map(dbDirectoryConverter::dboToDomain)
                 .toList();
     }
@@ -31,6 +36,7 @@ public class DirectoryRepository implements DirectoryRepositoryPort {
     public void createDirectories(List<Directory> directories) {
         List<DirectoryEntity> directoryEntityList = directories.stream()
                 .map(dbDirectoryConverter::domainToDbo)
+                .peek(directoryEntity -> directoryEntity.setParentDirectory(null))
                 .toList();
 
         directoryJpaRepository.saveAll(directoryEntityList);
