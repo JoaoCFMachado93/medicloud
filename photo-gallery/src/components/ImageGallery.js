@@ -2,7 +2,6 @@ import React from 'react';
 import './ImageGallery.css';
 
 const ImageGallery = ({ images, selectedAlbum }) => {
-  // Check if selectedAlbum is defined
   if (!selectedAlbum) {
     return (
       <div className="image-gallery">
@@ -11,24 +10,20 @@ const ImageGallery = ({ images, selectedAlbum }) => {
     );
   }
 
-  // Filter images based on selected album
-  const filteredImages = images.filter(image => image.albumId === selectedAlbum.id);
-
   return (
     <div className="image-gallery">
-      {filteredImages.map(image => (
-        <div key={image.id} className="image-card">
-          <a href={image.url} target="_blank" rel="noreferrer" style={{ display: 'block', width: '100%', height: '65%' }}>
-            <img src={image.url} alt={image.description} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </a>
+      {images.map((image) => (
+        <div key={image.imageId} className="image-card">
+          <div className="image-wrapper">
+            <img src={`data:image/png;base64,${image.imageData}`} alt={image.imageName} />
+          </div>
           <div className="image-details">
-            <p>Uploaded by: {image.user}</p>
-            <p>Date: {image.date}</p>
+            <p>Uploaded by: {image.uploadedBy}</p>
+            <p>Upload Date: {new Date(image.uploadDate).toLocaleDateString()}</p>
             <p>Description: {image.description}</p>
           </div>
         </div>
       ))}
-      {filteredImages.length === 0 && <p>No images found for the selected album</p>}
     </div>
   );
 };
