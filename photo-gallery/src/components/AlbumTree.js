@@ -1,24 +1,35 @@
-// AlbumTree.js
 import React, { useState } from 'react';
 import './AlbumTree.css';
 
 const AlbumTree = ({ albums, onSelectAlbum }) => {
   const [selectedAlbum, setSelectedAlbum] = useState(null);
+  const [subAlbums, setSubAlbums] = useState({});
 
-  const handleAlbumClick = (album) => {
+  const handleAlbumClick = async (album) => {
     setSelectedAlbum(album);
-    onSelectAlbum(album); // Callback to parent component to display images for the selected album
+    onSelectAlbum(album); 
+
+    try {
+      const response = await fetch(`http://localhost:8080/directories/subDirectories/${album.directoryId}`);
+      const data = await response.json();
+      setSubAlbums(prevState => ({ ...prevState, [album.directoryId]: data }));
+    } catch (error) {
+      console.error('Error fetching subdirectories:', error);
+    }
   };
 
   const renderAlbums = (albums) => {
     return albums.map(album => (
-      <li key={album.id}>
-        <div className={`album ${selectedAlbum === album ? 'selected' : ''}`} onClick={() => handleAlbumClick(album)}>
-          {album.name}
+      <li key={album.directoryId}>
+        <div
+          className={`album ${selectedAlbum === album ? 'selected' : ''}`}
+          onClick={() => handleAlbumClick(album)}
+        >
+          {album.directoryName}
         </div>
-        {album.subAlbums && album.subAlbums.length > 0 && (
+        {subAlbums[album.directoryId] && subAlbums[album.directoryId].length > 0 && (
           <ul className="sub-albums">
-            {renderAlbums(album.subAlbums)}
+            {renderAlbums(subAlbums[album.directoryId])}
           </ul>
         )}
       </li>

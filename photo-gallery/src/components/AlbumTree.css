@@ -31,6 +31,6 @@
   }
   
   .sub-albums {
-    margin-left: 10px;
+    margin-left: 20px; /* Add left margin to indent subdirectories */
   }
   
