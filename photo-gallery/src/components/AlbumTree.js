@@ -1,8 +1,9 @@
+// AlbumTree.js
 import React, { useState } from 'react';
 import './AlbumTree.css';
 import AddImagePopup from './AddImagePopup';
 
-const AlbumTree = ({ albums, onSelectAlbum }) => {
+const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [subAlbums, setSubAlbums] = useState({});
   const [showAddImagePopup, setShowAddImagePopup] = useState(false);
@@ -27,10 +28,6 @@ const AlbumTree = ({ albums, onSelectAlbum }) => {
     setShowAddImagePopup(true);
     // Close the dropdown
     setShowDropdownForAlbum(null);
-  };
-
-  const handlePopupClose = () => {
-    setShowAddImagePopup(false);
   };
 
   const handleCreateSubDirectory = async (parentDirectoryId) => {
@@ -64,12 +61,10 @@ const AlbumTree = ({ albums, onSelectAlbum }) => {
       } else {
         // Handle error
         console.error('Failed to create sub-directory:', response.status);
-        // You may display an error message to the user
         alert('Failed to create sub-directory. Please try again.');
       }
     } catch (error) {
       console.error('Error creating sub-directory:', error);
-      // You may display an error message to the user
       alert('An error occurred while creating the sub-directory. Please try again.');
     }
   
@@ -121,7 +116,7 @@ const AlbumTree = ({ albums, onSelectAlbum }) => {
     <div className="album-tree">
       <ul>{renderAlbums(albums)}</ul>
       {showAddImagePopup && (
-        <AddImagePopup directoryId={currentAlbumId} onClose={handlePopupClose} />
+        <AddImagePopup directoryId={currentAlbumId} onClose={() => { setShowAddImagePopup(false); onImageAdded(); }} />
       )}
     </div>
   );

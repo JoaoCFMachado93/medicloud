@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AddImagePopup.css'; // Import the CSS file
 
-const AddImagePopup = ({ directoryId, onClose, history }) => { // Destructure history from props
+const AddImagePopup = ({ directoryId, onClose, history }) => {
   const [imageData, setImageData] = useState('');
   const [imageName, setImageName] = useState('');
   const [imageDescription, setImageDescription] = useState('');
@@ -15,7 +15,9 @@ const AddImagePopup = ({ directoryId, onClose, history }) => { // Destructure hi
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+
     // Ensure all required fields are filled
     if (!imageName || !imageData) {
       alert('Please provide both image name and image data.');
@@ -47,7 +49,7 @@ const AddImagePopup = ({ directoryId, onClose, history }) => { // Destructure hi
       if (response.ok) {
         // Optionally, handle success
         onClose(); // Close the popup
-        window.location.reload(); // Reload the page
+        history.push('/'); // Redirect to homepage using history prop
       } else {
         // Handle error
         console.error('Failed to add image:', response.status);
@@ -57,28 +59,29 @@ const AddImagePopup = ({ directoryId, onClose, history }) => { // Destructure hi
     }
   };
   
-
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button className="close-button" onClick={onClose}>X</button>
         <h2>Add Image</h2>
-        <input type="file" onChange={handleImageUpload} />
-        <input
-          type="text"
-          placeholder="Image Name"
-          value={imageName}
-          onChange={(e) => setImageName(e.target.value)}
-        />
-        <textarea
-          placeholder="Image Description"
-          value={imageDescription}
-          onChange={(e) => setImageDescription(e.target.value)}
-        ></textarea>
-        <div className="button-group">
-          <button onClick={handleSubmit}>Add Image</button>
-          <button className="cancel-button" onClick={onClose}>Cancel</button>
-        </div>
+        <form onSubmit={handleSubmit}> {/* Use onSubmit event to handle form submission */}
+          <input type="file" onChange={handleImageUpload} />
+          <input
+            type="text"
+            placeholder="Image Name"
+            value={imageName}
+            onChange={(e) => setImageName(e.target.value)}
+          />
+          <textarea
+            placeholder="Image Description"
+            value={imageDescription}
+            onChange={(e) => setImageDescription(e.target.value)}
+          ></textarea>
+          <div className="button-group">
+            <button type="submit">Add Image</button> {/* Use type="submit" for the submit button */}
+            <button type="button" className="cancel-button" onClick={onClose}>Cancel</button>
+          </div>
+        </form>
       </div>
     </div>
   );

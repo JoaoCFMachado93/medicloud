@@ -1,3 +1,4 @@
+// App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import AlbumTree from './components/AlbumTree';
@@ -42,6 +43,22 @@ const App = () => {
     }
   };
 
+  const handleImageAdded = async () => {
+    // Call fetchImages again after adding an image to update the images for the selected album
+    if (selectedAlbum) {
+      try {
+        const response = await fetch(`http://localhost:8080/images/directory/${selectedAlbum.directoryId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch images');
+        }
+        const data = await response.json();
+        setImages(data);
+      } catch (error) {
+        console.error('Error fetching images:', error);
+      }
+    }
+  };
+
   return (
     <div className="app">
       <div className="header">
@@ -59,7 +76,7 @@ const App = () => {
       </div>
       <div className="content">
         <div className="album-container">
-          <AlbumTree albums={directories} onSelectAlbum={handleSelectAlbum} />
+          <AlbumTree albums={directories} onSelectAlbum={handleSelectAlbum} onImageAdded={handleImageAdded} />
         </div>
         <ImageGallery images={images} selectedAlbum={selectedAlbum} />
       </div>
