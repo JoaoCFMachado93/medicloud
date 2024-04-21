@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AddImagePopup.css'; // Import the CSS file
 
-const AddImagePopup = ({ directoryId, onClose, history }) => {
+const AddImagePopup = ({ directoryId, onClose }) => {
   const [imageData, setImageData] = useState('');
   const [imageName, setImageName] = useState('');
   const [imageDescription, setImageDescription] = useState('');
@@ -49,7 +49,6 @@ const AddImagePopup = ({ directoryId, onClose, history }) => {
       if (response.ok) {
         // Optionally, handle success
         onClose(); // Close the popup
-        history.push('/'); // Redirect to homepage using history prop
       } else {
         // Handle error
         console.error('Failed to add image:', response.status);
@@ -64,21 +63,30 @@ const AddImagePopup = ({ directoryId, onClose, history }) => {
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button className="close-button" onClick={onClose}>X</button>
         <h2>Add Image</h2>
-        <form onSubmit={handleSubmit}> {/* Use onSubmit event to handle form submission */}
-          <input type="file" onChange={handleImageUpload} />
-          <input
-            type="text"
-            placeholder="Image Name"
-            value={imageName}
-            onChange={(e) => setImageName(e.target.value)}
-          />
-          <textarea
-            placeholder="Image Description"
-            value={imageDescription}
-            onChange={(e) => setImageDescription(e.target.value)}
-          ></textarea>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="image-upload">Upload Image</label>
+            <input type="file" id="image-upload" onChange={handleImageUpload} />
+          </div>
+          <div className="input-group">
+            <label htmlFor="image-name">Image Name</label>
+            <input
+              type="text"
+              id="image-name"
+              value={imageName}
+              onChange={(e) => setImageName(e.target.value)}
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="image-description">Image Description</label>
+            <textarea
+              id="image-description"
+              value={imageDescription}
+              onChange={(e) => setImageDescription(e.target.value)}
+            ></textarea>
+          </div>
           <div className="button-group">
-            <button type="submit">Add Image</button> {/* Use type="submit" for the submit button */}
+            <button type="submit" className="submit-button">Add Image</button>
             <button type="button" className="cancel-button" onClick={onClose}>Cancel</button>
           </div>
         </form>
