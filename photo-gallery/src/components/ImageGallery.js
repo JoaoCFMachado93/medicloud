@@ -1,19 +1,23 @@
-import React from 'react';
+// ImageGallery.js
+
+import React, { useState } from 'react';
 import './ImageGallery.css';
+import ImageDetailsPopup from './ImageDetailsPopup'; // Import the ImageDetailsPopup component
 
 const ImageGallery = ({ images, selectedAlbum }) => {
-  if (!selectedAlbum) {
-    return (
-      <div className="image-gallery">
-        <p>Please select an album to view images</p>
-      </div>
-    );
-  }
+  const [showImageDetailsPopup, setShowImageDetailsPopup] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
+  const handleImageCardClick = (imageData, imageDescription, uploadedBy, uploadDate) => {
+    setSelectedImage({ imageData, imageDescription, uploadedBy, uploadDate });
+    setShowImageDetailsPopup(true);
+  };
+  
   return (
     <div className="image-gallery">
+      {/* Existing code to render images */}
       {images.map((image) => (
-        <div key={image.imageId} className="image-card">
+        <div key={image.imageId} className="image-card" onClick={() => handleImageCardClick(image.imageData, image.description, image.uploadedBy, image.uploadDate)}>
           <div className="image-wrapper">
             <img src={`data:image/png;base64,${image.imageData}`} alt={image.imageName} />
           </div>
@@ -24,6 +28,17 @@ const ImageGallery = ({ images, selectedAlbum }) => {
           </div>
         </div>
       ))}
+
+      {/* Conditional rendering of ImageDetailsPopup */}
+      {showImageDetailsPopup && selectedImage && (
+        <ImageDetailsPopup
+          imageData={selectedImage.imageData}
+          imageDescription={selectedImage.imageDescription}
+          uploadedBy={selectedImage.uploadedBy}
+          uploadDate={selectedImage.uploadDate}
+          onClose={() => setShowImageDetailsPopup(false)}
+        />
+      )}
     </div>
   );
 };

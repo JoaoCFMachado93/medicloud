@@ -1,0 +1,55 @@
+/* ImageDetailsPopup.css */
+
+.image-details-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.image-details-popup-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    width: 90%; /* Set width to 90% */
+    height: 90%;
+}
+
+.enlarged-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+
+.enlarged-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.image-details-container {
+    margin-bottom: 20px;
+}
+
+.image-details-container p {
+    margin: 5px 0;
+}
+
+.description-textarea {
+    width: 100%;
+    height: 150px; /* Adjust the height as needed */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
