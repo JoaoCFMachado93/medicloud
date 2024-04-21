@@ -7,6 +7,7 @@ const AlbumTree = ({ albums, onSelectAlbum }) => {
   const [subAlbums, setSubAlbums] = useState({});
   const [showAddImagePopup, setShowAddImagePopup] = useState(false);
   const [currentAlbumId, setCurrentAlbumId] = useState(null);
+  const [showDropdownForAlbum, setShowDropdownForAlbum] = useState(null);
 
   const handleAlbumClick = async (album) => {
     setSelectedAlbum(album);
@@ -30,6 +31,61 @@ const AlbumTree = ({ albums, onSelectAlbum }) => {
     setShowAddImagePopup(false);
   };
 
+  const handleCreateSubDirectory = async (parentDirectoryId) => {
+    const directoryName = prompt('Enter the name of the new sub-directory:');
+    if (!directoryName) return; // User canceled
+
+    try {
+      const response = await fetch(`http://localhost:8080/directories/subDirectories/${parentDirectoryId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify([
+          {
+            directoryName,
+            parentDirectory: parentDirectoryId,
+          }
+        ]),
+      });
+
+      if (response.ok) {
+        // Sub-directory created successfully
+        // You can update the UI as needed
+        // For example, you may want to fetch the updated directory structure
+      } else {
+        // Handle error
+        console.error('Failed to create sub-directory:', response.status);
+        // You may display an error message to the user
+        alert('Failed to create sub-directory. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error creating sub-directory:', error);
+      // You may display an error message to the user
+      alert('An error occurred while creating the sub-directory. Please try again.');
+    }
+  };
+
+  const toggleDropdown = (albumId) => {
+    setShowDropdownForAlbum((prevAlbumId) => (prevAlbumId === albumId ? null : albumId));
+  };
+
+  const renderDropdown = (albumId) => {
+    return (
+      <div className="dropdown">
+        <button className="dropdown-toggle" type="button" onClick={() => toggleDropdown(albumId)}>
+          ...
+        </button>
+        {showDropdownForAlbum === albumId && (
+          <div className="dropdown-menu">
+            <button className="dropdown-item" onClick={() => handleAddImageButtonClick(albumId)}>Add Image</button>
+            <button className="dropdown-item" onClick={() => handleCreateSubDirectory(albumId)}>Create Sub-directory</button>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   const renderAlbums = (albums) => {
     return albums.map((album) => (
       <li key={album.directoryId}>
@@ -38,9 +94,7 @@ const AlbumTree = ({ albums, onSelectAlbum }) => {
           onClick={() => handleAlbumClick(album)}
         >
           {album.directoryName}
-          <button className="add-image-button" onClick={() => handleAddImageButtonClick(album.directoryId)}>
-            +
-          </button>
+          {renderDropdown(album.directoryId)}
         </div>
         {subAlbums[album.directoryId] && subAlbums[album.directoryId].length > 0 && (
           <ul className="sub-albums">
