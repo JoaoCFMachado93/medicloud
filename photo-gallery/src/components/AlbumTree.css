@@ -71,3 +71,20 @@
 .sub-albums {
   margin-left: 20px; /* Add left margin to indent subdirectories */
 }
+
+/* App.css */
+
+.create-directory-button {
+  background-color: #007bff; /* Blue background */
+  color: #fff; /* White text */
+  border: none; /* Remove border */
+  padding: 8px 16px; /* Padding */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor */
+  border-radius: 4px; /* Rounded corners */
+  margin-left: 10px; /* Add margin to the left */
+}
+
+.create-directory-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
