@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AddImagePopup.css'; // Import the CSS file
 
-const AddImagePopup = ({ directoryId, onClose, onSubmit }) => {
+const AddImagePopup = ({ directoryId, onClose, history }) => { // Destructure history from props
   const [imageData, setImageData] = useState('');
   const [imageName, setImageName] = useState('');
   const [imageDescription, setImageDescription] = useState('');
@@ -46,6 +46,8 @@ const AddImagePopup = ({ directoryId, onClose, onSubmit }) => {
       // Check if the request was successful
       if (response.ok) {
         // Optionally, handle success
+        onClose(); // Close the popup
+        window.location.reload(); // Reload the page
       } else {
         // Handle error
         console.error('Failed to add image:', response.status);
@@ -53,15 +55,12 @@ const AddImagePopup = ({ directoryId, onClose, onSubmit }) => {
     } catch (error) {
       console.error('Error adding image:', error);
     }
-  
-    // Close the popup after submission
-    onClose();
   };
   
 
   return (
-    <div className="modal-overlay">
-      <div className="modal">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button className="close-button" onClick={onClose}>X</button>
         <h2>Add Image</h2>
         <input type="file" onChange={handleImageUpload} />
@@ -76,7 +75,10 @@ const AddImagePopup = ({ directoryId, onClose, onSubmit }) => {
           value={imageDescription}
           onChange={(e) => setImageDescription(e.target.value)}
         ></textarea>
-        <button onClick={handleSubmit}>Add Image</button>
+        <div className="button-group">
+          <button onClick={handleSubmit}>Add Image</button>
+          <button className="cancel-button" onClick={onClose}>Cancel</button>
+        </div>
       </div>
     </div>
   );

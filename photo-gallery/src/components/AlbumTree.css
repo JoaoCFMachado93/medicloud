@@ -1,36 +1,73 @@
 /* AlbumTree.css */
 .album-tree {
-    width: 250px;
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-right: 1px solid #ddd;
-    overflow-y: auto;
-    padding-bottom: 1000%;
-  }
-  
-  .album-tree ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .album {
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .album:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .album.selected {
-    background-color: #007aff;
-    color: #fff;
-  }
-  
-  .sub-albums {
-    margin-left: 20px; /* Add left margin to indent subdirectories */
-  }
-  
+  width: 250px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  padding-bottom: 1000%;
+}
+
+.album-tree ul {
+  list-style: none;
+  padding: 0;
+}
+
+.album {
+  display: flex; /* Use flexbox to align items */
+  justify-content: space-between; /* Space items evenly */
+  align-items: center; /* Center items vertically */
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.album:hover {
+  background-color: #e0e0e0;
+}
+
+.album.selected {
+  background-color: #007aff;
+  color: #fff;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0; /* Align menu to the right */
+  background-color: rgba(255, 255, 255, 1); /* Set background color with full opacity */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 999; /* Ensure dropdown menu is above other content */
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.sub-albums {
+  margin-left: 20px; /* Add left margin to indent subdirectories */
+}

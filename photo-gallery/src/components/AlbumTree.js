@@ -25,6 +25,8 @@ const AlbumTree = ({ albums, onSelectAlbum }) => {
   const handleAddImageButtonClick = (albumId) => {
     setCurrentAlbumId(albumId);
     setShowAddImagePopup(true);
+    // Close the dropdown
+    setShowDropdownForAlbum(null);
   };
 
   const handlePopupClose = () => {
@@ -33,8 +35,12 @@ const AlbumTree = ({ albums, onSelectAlbum }) => {
 
   const handleCreateSubDirectory = async (parentDirectoryId) => {
     const directoryName = prompt('Enter the name of the new sub-directory:');
-    if (!directoryName) return; // User canceled
-
+    if (!directoryName) {
+      // Close the dropdown if the user cancels
+      setShowDropdownForAlbum(null);
+      return; // User canceled
+    }
+  
     try {
       const response = await fetch(`http://localhost:8080/directories/subDirectories/${parentDirectoryId}`, {
         method: 'PUT',
@@ -48,11 +54,13 @@ const AlbumTree = ({ albums, onSelectAlbum }) => {
           }
         ]),
       });
-
+  
       if (response.ok) {
         // Sub-directory created successfully
-        // You can update the UI as needed
-        // For example, you may want to fetch the updated directory structure
+        // Fetch the updated directory structure
+        const updatedResponse = await fetch(`http://localhost:8080/directories/subDirectories/${parentDirectoryId}`);
+        const updatedData = await updatedResponse.json();
+        setSubAlbums((prevState) => ({ ...prevState, [parentDirectoryId]: updatedData }));
       } else {
         // Handle error
         console.error('Failed to create sub-directory:', response.status);
@@ -64,7 +72,11 @@ const AlbumTree = ({ albums, onSelectAlbum }) => {
       // You may display an error message to the user
       alert('An error occurred while creating the sub-directory. Please try again.');
     }
+  
+    // Close the dropdown after attempting to create the sub-directory
+    setShowDropdownForAlbum(null);
   };
+   
 
   const toggleDropdown = (albumId) => {
     setShowDropdownForAlbum((prevAlbumId) => (prevAlbumId === albumId ? null : albumId));
