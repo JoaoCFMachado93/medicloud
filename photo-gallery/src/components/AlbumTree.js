@@ -1,4 +1,3 @@
-// AlbumTree.js
 import React, { useState } from 'react';
 import './AlbumTree.css';
 import AddImagePopup from './AddImagePopup';
@@ -15,12 +14,17 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
     setSelectedAlbum(album);
     onSelectAlbum(album);
 
-    try {
-      const response = await fetch(`http://localhost:8080/directories/subDirectories/${album.directoryId}`);
-      const data = await response.json();
-      setSubAlbums((prevState) => ({ ...prevState, [album.directoryId]: data }));
-    } catch (error) {
-      console.error('Error fetching subdirectories:', error);
+    // Toggle the display of child directories
+    if (subAlbums[album.directoryId]) {
+      setSubAlbums((prevState) => ({ ...prevState, [album.directoryId]: null }));
+    } else {
+      try {
+        const response = await fetch(`http://localhost:8080/directories/subDirectories/${album.directoryId}`);
+        const data = await response.json();
+        setSubAlbums((prevState) => ({ ...prevState, [album.directoryId]: data }));
+      } catch (error) {
+        console.error('Error fetching subdirectories:', error);
+      }
     }
   };
 
@@ -65,14 +69,15 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
     setShowDropdownForAlbum(null);
   };
 
-  const toggleDropdown = (albumId) => {
+  const toggleDropdown = (albumId, e) => {
+    e.stopPropagation(); // Prevent event propagation
     setShowDropdownForAlbum((prevAlbumId) => (prevAlbumId === albumId ? null : albumId));
   };
 
   const renderDropdown = (albumId) => {
     return (
       <div className="dropdown">
-        <button className="dropdown-toggle" type="button" onClick={() => toggleDropdown(albumId)}>
+        <button className="dropdown-toggle" type="button" onClick={(e) => toggleDropdown(albumId, e)}>
           ...
         </button>
         {showDropdownForAlbum === albumId && (

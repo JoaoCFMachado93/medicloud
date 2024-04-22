@@ -30,7 +30,7 @@ const ImageDetailsPopup = ({ imageData, imageDescription, uploadedBy, uploadDate
         <div className="enlarged-image-wrapper" style={{ height: `${60 * zoomLevel}%` }}>
           <img
             src={`data:image/png;base64,${imageData}`}
-            alt="Image"
+            alt="myImage"
             className="enlarged-image"
             style={{ transform: `scale(${zoomLevel})` }}
             onClick={handleImageClick} // Add click event handler
