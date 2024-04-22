@@ -60,35 +60,6 @@
   flex-grow: 1;
 }
 
-.album-tree {
-  width: 200px;
-}
 
-/* Add padding to the right side of the album container */
-.album-container {
-  padding-right: 20px;
-}
 
-.image-gallery {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
 
-.image-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 10%;
-}
-
-.image-card img {
-  width: 100%;
-  height: auto;
-}
-
-.image-card p {
-  margin: 5px;
-}

@@ -15,10 +15,12 @@
 .image-card {
   width: 300px; /* Set a fixed width for each image card */
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   overflow: hidden;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10%;
+
 }
 
 /* Style for the image wrapper */

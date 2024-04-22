@@ -1,62 +1,15 @@
 // App.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import AlbumTree from './components/AlbumTree';
-import ImageGallery from './components/ImageGallery';
+import DirectoryContainer from './components/DirectoryContainer';
+import ImageContainer from './components/ImageContainer';
 
 const App = () => {
-  const [directories, setDirectories] = useState([]);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
-  const [images, setImages] = useState([]);
-  
-  // Fetch directories from the backend when the component mounts
-  useEffect(() => {
-    const fetchDirectories = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/directories');
-        if (!response.ok) {
-          throw new Error('Failed to fetch directories');
-        }
-        const data = await response.json();
-        setDirectories(data);
-      } catch (error) {
-        console.error('Error fetching directories:', error);
-      }
-    };
-    fetchDirectories();
-  }, []);
 
-  const handleSelectAlbum = async (album) => {
+  const handleSelectAlbum = (album) => {
     setSelectedAlbum(album);
     console.log('Selected album:', album);
-  
-    // Call fetchImages immediately after setting selectedAlbum
-    try {
-      const response = await fetch(`http://localhost:8080/images/directory/${album.directoryId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch images');
-      }
-      const data = await response.json();
-      setImages(data);
-    } catch (error) {
-      console.error('Error fetching images:', error);
-    }
-  };
-
-  const handleImageAdded = async () => {
-    // Call fetchImages again after adding an image to update the images for the selected album
-    if (selectedAlbum) {
-      try {
-        const response = await fetch(`http://localhost:8080/images/directory/${selectedAlbum.directoryId}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch images');
-        }
-        const data = await response.json();
-        setImages(data);
-      } catch (error) {
-        console.error('Error fetching images:', error);
-      }
-    }
   };
 
   return (
@@ -76,9 +29,9 @@ const App = () => {
       </div>
       <div className="content">
         <div className="album-container">
-          <AlbumTree albums={directories} onSelectAlbum={handleSelectAlbum} onImageAdded={handleImageAdded} />
+          <DirectoryContainer onSelectAlbum={handleSelectAlbum} />
         </div>
-        <ImageGallery images={images} selectedAlbum={selectedAlbum} />
+        <ImageContainer selectedAlbum={selectedAlbum} />
       </div>
     </div>
   );

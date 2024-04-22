@@ -8,6 +8,10 @@
   padding-bottom: 1000%;
 }
 
+.album-container {
+  padding-right: 20px;
+}
+
 .album-tree ul {
   list-style: none;
   padding: 0;
