@@ -33,8 +33,3 @@ services:
       name: react-web-disk
       mountPath: /app
       sizeGB: 10
-
-routes:
-  - src: /.*
-    dest: react-web-app:/app/build
-    status: 200
