@@ -1,0 +1,20 @@
+services:
+  - name: docker-compose-service
+    env: docker
+    buildCommand: docker-compose -f backend/endoscope/docker-compose.yml up -d
+    startCommand: echo "Docker Compose service started successfully."
+
+  - name: spring-boot-app
+    env: docker
+    buildCommand: ./mvnw -f backend/endoscope clean package -DskipTests
+    startCommand: java -jar backend/endoscope/endoscope-application/target/endoscope.jar
+
+  - name: react-web-app
+    env: static
+    buildCommand: npm install --prefix photo-gallery && npm run build --prefix photo-gallery
+    startCommand: echo "React web application built successfully."
+
+routes:
+  - src: /.*
+    dest: react-web-app:/photo-gallery/build
+    status: 200
