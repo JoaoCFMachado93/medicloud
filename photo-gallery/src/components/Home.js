@@ -7,6 +7,8 @@ import './Home.css';
 const Home = () => {
   const { userLogout } = useAuth(); // Destructure userLogout from useAuth
   const [selectedAlbum, setSelectedAlbum] = useState(null);
+  const [images] = useState([]);
+
 
   const handleSelectAlbum = (album) => {
     setSelectedAlbum(album);
@@ -14,7 +16,6 @@ const Home = () => {
   };
 
   const handleLogout = () => {
-    // Call the userLogout function when logout button is clicked
     userLogout();
   };
 
@@ -37,7 +38,7 @@ const Home = () => {
         <div className="album-container">
           <DirectoryContainer onSelectAlbum={handleSelectAlbum} />
         </div>
-        <ImageContainer selectedAlbum={selectedAlbum} />
+        <ImageContainer images={images} selectedAlbum={selectedAlbum} />
       </div>
     </div>
   );

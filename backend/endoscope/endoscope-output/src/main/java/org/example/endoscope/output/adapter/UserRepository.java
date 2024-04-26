@@ -4,7 +4,8 @@ import org.example.endoscope.core.domain.User;
 import org.example.endoscope.core.driven.UserRepositoryPort;
 import org.example.endoscope.output.dbo.UserEntity;
 import org.example.endoscope.output.repository.UserJpaRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.util.Optional;
 
 public class UserRepository implements UserRepositoryPort {
 
@@ -15,11 +16,10 @@ public class UserRepository implements UserRepositoryPort {
     }
 
     @Override
-    public User findByEmail(String email) {
-        UserEntity userEntity = userJpaRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    public Optional<User> findByEmail(String email) {
+        Optional<UserEntity> userEntity = userJpaRepository.findByEmail(email);
 
-        return dboToDomain(userEntity);
+        return userEntity.map(this::dboToDomain);
     }
 
     @Override

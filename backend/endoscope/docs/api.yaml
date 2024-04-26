@@ -318,6 +318,9 @@ components:
         education:
           type: string
           description: The user's education
+        role:
+          type: string
+          description: The user's role
 
     UserLoginRequest:
       type: object
@@ -335,11 +338,19 @@ components:
       properties:
         token:
           type: string
-          format: st
-          description: The user's email address
+          format: string
+          description: The user's token
         expiration:
           type: long
           description: The expiration time of the token
+        email:
+          type: string
+          format: string
+          description: The user's email
+        role:
+          type: string
+          format: string
+          description: The user's role
 
     UnauthorizedError:
       type: object
@@ -383,7 +394,7 @@ components:
           type: string
           description: The name of the user who uploaded the image
         uploadDate:
-          type: integer
+          type: long
           description: The upload date of the image in milliseconds since Unix epoch
         description:
           type: string

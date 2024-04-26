@@ -1,4 +1,4 @@
-package com.tericcabrel.authapi.exceptions;
+package org.example.endoscope.application.spring.configuration.exceptions;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;

@@ -21,7 +21,7 @@ public class SpringAuthService implements AuthServicePort {
 
     @Override
     public void registerUser(User user) {
-        if (userRepositoryPort.findByEmail(user.getEmail()) != null) {
+        if (userRepositoryPort.findByEmail(user.getEmail()).isPresent()) {
             throw new IllegalArgumentException("User with this email already exists");
         }
 
@@ -31,7 +31,8 @@ public class SpringAuthService implements AuthServicePort {
 
     @Override
     public User loginUser(String email, String password) {
-        var user = userRepositoryPort.findByEmail(email);
+        var user = userRepositoryPort.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

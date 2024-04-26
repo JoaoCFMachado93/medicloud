@@ -15,6 +15,9 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
   const [showDropdownForAlbum, setShowDropdownForAlbum] = useState(null);
   const { getUser } = useAuth();
 
+  const user = getUser();
+  const isAdmin = user && user.role.toUpperCase() === "ADMIN";
+
   const handleAlbumClick = async (album) => {
     setSelectedAlbum(album);
     onSelectAlbum(album);
@@ -27,7 +30,6 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
       }));
     } else {
       try {
-        const user = getUser();
 
         if (!user) {
           throw new Error("User not logged in");
@@ -115,13 +117,15 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
   const renderDropdown = (albumId) => {
     return (
       <div className="dropdown">
-        <button
+       {isAdmin && 
+       ( <button
           className="dropdown-toggle"
           type="button"
           onClick={(e) => toggleDropdown(albumId, e)}
         >
           ...
         </button>
+        )}
         {showDropdownForAlbum === albumId && (
           <div className="dropdown-menu">
             <button
@@ -164,12 +168,14 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
 
   return (
     <div className="album-tree">
-      <button
-        className="create-directory-button"
-        onClick={handleCreateParentDirectory}
-      >
-        Create New Album
-      </button>
+      {isAdmin && (
+        <button
+          className="create-directory-button"
+          onClick={handleCreateParentDirectory}
+        >
+          Create New Album
+        </button>
+      )}
       <ul>{renderAlbums(albums)}</ul>
       {showAddImagePopup && (
         <AddImagePopup

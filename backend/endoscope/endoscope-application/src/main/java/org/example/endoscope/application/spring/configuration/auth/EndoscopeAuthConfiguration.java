@@ -1,24 +1,28 @@
 package org.example.endoscope.application.spring.configuration.auth;
 
-import org.example.endoscope.output.adapter.UserRepository;
+import org.example.endoscope.core.driven.UserRepositoryPort;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+@Configuration
 public class EndoscopeAuthConfiguration {
-    private final UserRepository userRepository;
+    private final UserRepositoryPort userRepository;
 
-    public EndoscopeAuthConfiguration(UserRepository userRepository) {
+    public EndoscopeAuthConfiguration(UserRepositoryPort userRepository) {
         this.userRepository = userRepository;
     }
 
     @Bean
     UserDetailsService userDetailsService() {
-        return userRepository::findByEmail;
+        return username -> userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Bean

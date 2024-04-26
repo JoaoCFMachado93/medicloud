@@ -38,7 +38,7 @@ const AddImagePopup = ({ directoryId, onClose }) => {
       const formData = {
         imageName,
         directory: directoryId, // Include directoryId
-        uploadedBy: 'machado', // Change as needed
+        uploadedBy: user.email, // Change as needed
         uploadDate: Date.now(),
         description: imageDescription,
         imageData: base64String, // Use the extracted base64 string

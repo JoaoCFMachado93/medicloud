@@ -30,7 +30,7 @@ public class AuthAPIDelegateImpl implements AuthApiDelegate {
 
     @Override
     public ResponseEntity<Void> registerUser(UserEntity userEntity) {
-        log.info("Register the following user: {}", userEntity);
+        log.info("Register the following user: {}", userEntity.getEmail());
         var userDomain = userConverter.dtoToDomain(userEntity);
         authServicePort.registerUser(userDomain);
         return ResponseEntity.ok().build();
@@ -38,7 +38,7 @@ public class AuthAPIDelegateImpl implements AuthApiDelegate {
 
     @Override
     public ResponseEntity<UserLoginResponse> loginUser(UserLoginRequest userLoginRequest) {
-        log.info("Login the following user: {}", userLoginRequest);
+        log.info("Login the following user: {}", userLoginRequest.getEmail());
 
         User user = authServicePort.loginUser(userLoginRequest.getEmail(), userLoginRequest.getPassword());
 
@@ -46,7 +46,9 @@ public class AuthAPIDelegateImpl implements AuthApiDelegate {
 
         UserLoginResponse userLoginResponse = new UserLoginResponse()
                 .token(jwtToken)
-                .expiration(jwtServicePort.getExpirationTime());
+                .expiration(jwtServicePort.getExpirationTime())
+                .email(user.getEmail())
+                .role(user.getRole());
 
         return ResponseEntity.ok(userLoginResponse);
     }
