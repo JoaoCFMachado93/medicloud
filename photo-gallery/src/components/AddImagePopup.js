@@ -10,12 +10,19 @@ const AddImagePopup = ({ directoryId, onClose }) => {
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImageData(reader.result);
-    };
-    reader.readAsDataURL(file);
+    
+    // Check if file exists and is an image
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImageData(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      console.error("Invalid file format or no file selected.");
+    }
   };
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior

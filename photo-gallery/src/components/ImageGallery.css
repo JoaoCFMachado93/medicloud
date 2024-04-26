@@ -11,7 +11,7 @@
   max-width: calc(300px * 5 + 20px * 4); /* Ensure maximum of 5 columns */
   justify-content: start; /* Align items to the start of the grid container horizontally */
   align-items: start; /* Align items to the start of the grid container vertically */
-  max-height: 300px;
+  max-height: 600px;
 }
 
 /* Style for each image card */

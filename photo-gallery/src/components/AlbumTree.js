@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./AlbumTree.css";
 import AddImagePopup from "./AddImagePopup";
 import { useAuth } from "./AuthProvider";
@@ -14,9 +14,31 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
   const [currentAlbumId, setCurrentAlbumId] = useState(null);
   const [showDropdownForAlbum, setShowDropdownForAlbum] = useState(null);
   const { getUser } = useAuth();
+  const dropdownRef = useRef(null); // Ref to track dropdown element
 
   const user = getUser();
   const isAdmin = user && user.role.toUpperCase() === "ADMIN";
+
+  useEffect(() => {
+    // Function to handle clicks outside of the dropdown
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        // Click occurred outside of the dropdown
+        if (!event.target.closest(".dropdown-menu")) {
+          // Click didn't occur within the dropdown or its options
+          setShowDropdownForAlbum(null);
+        }
+      }
+    };
+
+    // Add event listener to handle clicks outside of the dropdown
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup function to remove event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []); // Run only once on component mount
 
   const handleAlbumClick = async (album) => {
     setSelectedAlbum(album);
@@ -132,7 +154,7 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
 
   const renderDropdown = (albumId) => {
     return (
-      <div className="dropdown">
+      <div className="dropdown" ref={dropdownRef}>
         {isAdmin && (
           <button
             className="dropdown-toggle"
