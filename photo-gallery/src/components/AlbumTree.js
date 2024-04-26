@@ -30,7 +30,6 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
       }));
     } else {
       try {
-
         if (!user) {
           throw new Error("User not logged in");
         }
@@ -39,7 +38,7 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
           `http://localhost:8080/directories/subDirectories/${album.directoryId}`,
           {
             headers: {
-              'Authorization': `Bearer ${user.token}`,
+              Authorization: `Bearer ${user.token}`,
             },
           }
         );
@@ -70,7 +69,7 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
       return; // User canceled
     }
 
-    const success = await createParentDirectory(directoryName,user.token); // Use the function
+    const success = await createParentDirectory(directoryName, user.token); // Use the function
     if (success) {
       // Refresh the page to fetch the updated directory structure
       window.location.reload();
@@ -89,17 +88,34 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
       return; // User canceled
     }
 
-    const updatedData = await createSubDirectory(
-      parentDirectoryId,
-      directoryName,
-      user.token
-    );
-    if (updatedData) {
-      setSubAlbums((prevState) => ({
-        ...prevState,
-        [parentDirectoryId]: updatedData,
-      }));
-    } else {
+    try {
+      const updatedData = await createSubDirectory(
+        parentDirectoryId,
+        directoryName,
+        user.token
+      );
+      if (updatedData) {
+        const response = await fetch(
+          `http://localhost:8080/directories/subDirectories/${parentDirectoryId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch sub-directories");
+        }
+        const data = await response.json();
+        setSubAlbums((prevState) => ({
+          ...prevState,
+          [parentDirectoryId]: data,
+        }));
+      } else {
+        throw new Error("Failed to create sub-directory");
+      }
+    } catch (error) {
+      console.error("Error creating sub-directory:", error);
       alert("Failed to create sub-directory. Please try again.");
     }
 
@@ -117,14 +133,14 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
   const renderDropdown = (albumId) => {
     return (
       <div className="dropdown">
-       {isAdmin && 
-       ( <button
-          className="dropdown-toggle"
-          type="button"
-          onClick={(e) => toggleDropdown(albumId, e)}
-        >
-          ...
-        </button>
+        {isAdmin && (
+          <button
+            className="dropdown-toggle"
+            type="button"
+            onClick={(e) => toggleDropdown(albumId, e)}
+          >
+            ...
+          </button>
         )}
         {showDropdownForAlbum === albumId && (
           <div className="dropdown-menu">

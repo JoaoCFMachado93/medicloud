@@ -51,7 +51,12 @@
   position: absolute;
   top: 100%;
   right: 0; /* Align menu to the right */
-  background-color: rgba(255, 255, 255, 1); /* Set background color with full opacity */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    1
+  ); /* Set background color with full opacity */
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

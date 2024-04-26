@@ -7,7 +7,7 @@ const createParentDirectory = async (directoryName, userToken) => {
     const response = await fetch("http://localhost:8080/directories", {
       method: "PUT",
       headers: {
-        'Authorization': `Bearer ${userToken}`,
+        Authorization: `Bearer ${userToken}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify([
@@ -47,7 +47,7 @@ const createSubDirectory = async (
       {
         method: "PUT",
         headers: {
-          'Authorization': `Bearer ${userToken}`,
+          Authorization: `Bearer ${userToken}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify([

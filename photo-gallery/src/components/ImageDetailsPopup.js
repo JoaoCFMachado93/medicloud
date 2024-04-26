@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
-import './ImageDetailsPopup.css';
+import React, { useState } from "react";
+import "./ImageDetailsPopup.css";
 
-const ImageDetailsPopup = ({ imageData, imageDescription, uploadedBy, uploadDate, onClose }) => {
+const ImageDetailsPopup = ({
+  imageData,
+  imageDescription,
+  uploadedBy,
+  uploadDate,
+  onClose,
+}) => {
   const [zoomLevel, setZoomLevel] = useState(1);
 
   const handleZoomIn = () => {
@@ -14,20 +20,30 @@ const ImageDetailsPopup = ({ imageData, imageDescription, uploadedBy, uploadDate
 
   const handleImageClick = () => {
     // Decode base64-encoded image data into a Uint8Array
-    const imageDataUint8 = Uint8Array.from(atob(imageData), c => c.charCodeAt(0));
+    const imageDataUint8 = Uint8Array.from(atob(imageData), (c) =>
+      c.charCodeAt(0)
+    );
     // Create a Blob object from the Uint8Array
-    const blob = new Blob([imageDataUint8], { type: 'image/png' });
+    const blob = new Blob([imageDataUint8], { type: "image/png" });
     // Create a URL for the Blob object
     const imageUrl = URL.createObjectURL(blob);
     // Open the Blob URL in a new tab
-    window.open(imageUrl, '_blank');
+    window.open(imageUrl, "_blank");
   };
 
   return (
     <div className="image-details-popup-overlay" onClick={onClose}>
-      <div className="image-details-popup-container" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>X</button>
-        <div className="enlarged-image-wrapper" style={{ height: `${60 * zoomLevel}%` }}>
+      <div
+        className="image-details-popup-container"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="close-button" onClick={onClose}>
+          X
+        </button>
+        <div
+          className="enlarged-image-wrapper"
+          style={{ height: `${60 * zoomLevel}%` }}
+        >
           <img
             src={`data:image/png;base64,${imageData}`}
             alt="myImage"

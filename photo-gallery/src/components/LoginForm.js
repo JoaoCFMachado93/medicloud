@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthProvider';
-import { FaEnvelope, FaLock } from 'react-icons/fa'; // Import icons from react-icons library
-import './LoginForm.css'; // Import custom CSS for the login form
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthProvider";
+import { FaEnvelope, FaLock } from "react-icons/fa"; // Import icons from react-icons library
+import "./LoginForm.css"; // Import custom CSS for the login form
 
 const LoginForm = () => {
   const { userLogin } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [isError, setIsError] = useState(false);
 
@@ -17,7 +17,7 @@ const LoginForm = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -30,28 +30,28 @@ const LoginForm = () => {
     }
     try {
       const response = await fetch(`http://localhost:8080/auth/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (!response.ok) {
-        throw new Error('Login failed');
+        throw new Error("Login failed");
       }
-  
+
       const userData = await response.json();
       userLogin(userData);
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
       setIsError(true);
     }
   };
 
   const handleRegister = () => {
-    navigate('/register'); // Navigate to the registration form
+    navigate("/register"); // Navigate to the registration form
   };
 
   return (
@@ -61,17 +61,36 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <FaEnvelope className="input-icon" />
-            <input type="text" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
+            <input
+              type="text"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              required
+            />
           </div>
           <div className="input-group">
             <FaLock className="input-icon" />
-            <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" required />
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Password"
+              required
+            />
           </div>
-          <button className="login-form-button" >Login</button>
+          <button className="login-form-button">Login</button>
         </form>
-        {isError && <p>Error: Unable to login. Please check your credentials.</p>}
+        {isError && (
+          <p>Error: Unable to login. Please check your credentials.</p>
+        )}
         <div className="register-message">
-          <p>Don't have an account? <button onClick={handleRegister}>Register</button></p>
+          <p>
+            Don't have an account?{" "}
+            <button onClick={handleRegister}>Register</button>
+          </p>
         </div>
       </div>
     </div>

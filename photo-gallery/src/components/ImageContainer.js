@@ -22,7 +22,7 @@ const ImageContainer = ({ selectedAlbum }) => {
           `http://localhost:8080/images/directory/${selectedAlbum.directoryId}`,
           {
             headers: {
-              'Authorization': `Bearer ${user.token}`,
+              Authorization: `Bearer ${user.token}`,
             },
           }
         );

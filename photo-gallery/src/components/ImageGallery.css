@@ -3,7 +3,10 @@
 /* Ensure the image gallery is displayed as a grid */
 .image-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust the width as needed */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  ); /* Adjust the width as needed */
   gap: 20px;
   max-width: calc(300px * 5 + 20px * 4); /* Ensure maximum of 5 columns */
   justify-content: start; /* Align items to the start of the grid container horizontally */
@@ -20,7 +23,6 @@
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: 10%;
-
 }
 
 /* Style for the image wrapper */

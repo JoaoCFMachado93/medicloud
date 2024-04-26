@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import AlbumTree from './AlbumTree';
-import { useAuth } from './AuthProvider'
+import React, { useState, useEffect } from "react";
+import AlbumTree from "./AlbumTree";
+import { useAuth } from "./AuthProvider";
 
-const DirectoryContainer = ({ onSelectAlbum }) => {
+const DirectoryContainer = ({ onSelectAlbum, onImageAdded }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [directories, setDirectories] = useState([]);
-  
+
   const { getUser } = useAuth();
 
   useEffect(() => {
@@ -15,24 +15,24 @@ const DirectoryContainer = ({ onSelectAlbum }) => {
         const user = getUser();
 
         if (!user) {
-          throw new Error('User not logged in');
+          throw new Error("User not logged in");
         }
 
-        const response = await fetch('http://localhost:8080/directories', {
+        const response = await fetch("http://localhost:8080/directories", {
           headers: {
-            'Authorization': `Bearer ${user.token}`,
+            Authorization: `Bearer ${user.token}`,
           },
         });
 
         if (!response.ok) {
-          throw new Error('Failed to fetch directories');
+          throw new Error("Failed to fetch directories");
         }
 
         const data = await response.json();
         setDirectories(data);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching directories:', error);
+        console.error("Error fetching directories:", error);
         setError(error.message);
         setLoading(false);
       }
@@ -49,7 +49,13 @@ const DirectoryContainer = ({ onSelectAlbum }) => {
     return <div>Error: {error}</div>;
   }
 
-  return <AlbumTree albums={directories} onSelectAlbum={onSelectAlbum} />;
+  return (
+    <AlbumTree
+      albums={directories}
+      onSelectAlbum={onSelectAlbum}
+      onImageAdded={onImageAdded}
+    />
+  );
 };
 
 export default DirectoryContainer;
