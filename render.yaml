@@ -1,20 +1,40 @@
 services:
-  - name: docker-compose-service
-    env: docker
-    buildCommand: docker-compose -f backend/endoscope/docker-compose.yml up -d
-    startCommand: echo "Docker Compose service started successfully."
+  # Start Docker Compose service
+  - type: pserv
+    runtime: docker
+    name: backend-docker-compose
+    rootDir: backend/endoscope
+    buildCommand: docker-compose -f docker-compose.yml up -d
+    disk:
+      name: backend-docker-compose-disk
+      mountPath: /app
+      sizeGB: 10
 
-  - name: spring-boot-app
-    env: docker
-    buildCommand: ./mvnw -f backend/endoscope clean package -DskipTests
+  # Start Spring Boot application
+  - type: web
+    runtime: java
+    name: spring-boot-app
+    rootDir: backend/endoscope
+    buildCommand: ./mvnw package -DskipTests
     startCommand: java -jar backend/endoscope/endoscope-application/target/endoscope.jar
+    disk:
+      name: backend-spring-boot-disk
+      mountPath: /app
+      sizeGB: 10
 
-  - name: react-web-app
-    env: static
-    buildCommand: npm install --prefix photo-gallery && npm run build --prefix photo-gallery
-    startCommand: echo "React web application built successfully."
+  # Start React web application
+  - type: web
+    runtime: nodejs
+    name: react-web-app
+    rootDir: photo-gallery
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    disk:
+      name: react-web-disk
+      mountPath: /app
+      sizeGB: 10
 
 routes:
   - src: /.*
-    dest: react-web-app:/photo-gallery/build
+    dest: react-web-app:/app/build
     status: 200
