@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useAuth } from './AuthProvider'
 import './AddImagePopup.css'; // Import the CSS file
 
 const AddImagePopup = ({ directoryId, onClose }) => {
   const [imageData, setImageData] = useState('');
   const [imageName, setImageName] = useState('');
   const [imageDescription, setImageDescription] = useState('');
+  const { getUser } = useAuth();
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -25,6 +27,11 @@ const AddImagePopup = ({ directoryId, onClose }) => {
     }
   
     try {
+      const user = getUser();
+
+      if (!user) {
+        throw new Error('User not logged in');
+      }
       // Extract base64 string from data URL
       const base64String = imageData.split(',')[1]; // Split at comma and get the second part
   
@@ -40,6 +47,7 @@ const AddImagePopup = ({ directoryId, onClose }) => {
       const response = await fetch(`http://localhost:8080/images/directory/${directoryId}`, {
         method: 'PUT',
         headers: {
+          'Authorization': `Bearer ${user.token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify([formData]), // Send formData as an array

@@ -13,12 +13,78 @@ tags:
     description: directory API
   - name: image
     description: image API
+  - name: auth
+    description: auth API
+
+paths:
+
+  /auth/signup:
+    post:
+      tags:
+        - auth
+      summary: Register a new user
+      description: Register a new user
+      operationId: registerUser
+      requestBody:
+        description: User registration data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserEntity'
+      responses:
+        '200':
+          description: User registered successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: Authenticate user and generate JWT token
+      description: Authenticate user with email and password, and generate JWT token
+      operationId: loginUser
+      requestBody:
+        description: User login credentials
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserLoginResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
 
   #############################
   # Directory API             #
   #############################
-
-paths:
 
   /directories:
     get:
@@ -223,6 +289,72 @@ paths:
 
 components:
   schemas:
+    UserEntity:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: The user's email address
+        password:
+          type: string
+          format: password
+          description: The user's password
+        fullName:
+          type: string
+          description: The user's full name
+        age:
+          type: integer
+          description: The user's age
+        workLocation:
+          type: string
+          description: The user's work location
+        medicalId:
+          type: string
+          description: The user's medical ID
+        medicalSpeciality:
+          type: string
+          description: The user's medical speciality
+        education:
+          type: string
+          description: The user's education
+
+    UserLoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The user's token
+        password:
+          type: string
+          format: password
+          description: The user's password
+
+    UserLoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          format: st
+          description: The user's email address
+        expiration:
+          type: long
+          description: The expiration time of the token
+
+    UnauthorizedError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+
+    BadRequestError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+
     DirectoryEntity:
       type: object
       properties:

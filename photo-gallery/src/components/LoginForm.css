@@ -1,0 +1,85 @@
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Grey background color */
+}
+
+.login-card {
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: #ffffff; /* White card background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth effect */
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  top: 0%;
+  transform: translateY(-50%);
+  color: #ccc; /* Icon color */
+  padding-left: 15px; /* Adjusted padding left */
+}
+
+.input-icon svg {
+  height: 20px; /* Adjusted icon height */
+  width: 20px; /* Adjusted icon width */
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form button {
+  width: calc(100% - 40px); /* Adjusted width to accommodate the icon */
+  margin-bottom: 20px;
+  padding: 15px;
+  padding-left: 40px; /* Adjusted padding left to accommodate the icon */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.login-form-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px; /* Add margin on top to separate from input fields */
+}
+
+.login-form button:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
+
+
+.register-message {
+  text-align: center;
+}
+
+.register-message p {
+  margin-bottom: 0;
+}
+
+.register-message button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.register-message button:hover {
+  color: #0056b3; /* Darker color on hover */
+}

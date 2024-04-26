@@ -19,3 +19,16 @@ CREATE TABLE IF NOT EXISTS image (
     image_data LONGBLOB, -- Field to hold the image data
     FOREIGN KEY (directory_id) REFERENCES directory(directory_id)
 );
+
+CREATE TABLE IF NOT EXISTS user (
+    user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(256) NOT NULL,
+    password VARCHAR(256) NOT NULL,
+    full_name VARCHAR(256) NOT NULL,
+    age INT NOT NULL,
+    work_location VARCHAR(256) NOT NULL,
+    medical_id VARCHAR(256) NOT NULL,
+    medical_speciality VARCHAR(256) NOT NULL,
+    education VARCHAR(256) NOT NULL,
+    role VARCHAR(256) NOT NULL
+);
