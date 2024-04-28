@@ -1,0 +1,13 @@
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/driven/DirectoryRepositoryPort.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/domain/Image.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/driver/AuthServicePort.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/domain/Directory.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/driven/ImageRepositoryPort.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/driver/ImageServicePort.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/domain/User.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/driver/DirectoryServicePort.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/service/SpringJwtService.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/driven/UserRepositoryPort.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/service/SpringImageService.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/service/SpringAuthService.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/service/SpringDirectoryService.java

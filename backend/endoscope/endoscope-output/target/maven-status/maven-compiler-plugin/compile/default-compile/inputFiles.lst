@@ -1,0 +1,11 @@
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/adapter/DirectoryRepository.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/dbo/DirectoryEntity.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/dbo/UserEntity.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/repository/UserJpaRepository.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/mapper/directory/DbDirectoryConverter.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/adapter/UserRepository.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/dbo/ImageEntity.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/repository/DirectoryJpaRepository.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/repository/ImageJpaRepository.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/mapper/directory/DbImageConverter.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-output/src/main/java/org/example/endoscope/output/adapter/ImageRepository.java

@@ -1,0 +1,16 @@
+org/example/endoscope/output/repository/DirectoryJpaRepository.class
+org/example/endoscope/output/dbo/ImageEntity.class
+org/example/endoscope/output/repository/UserJpaRepository.class
+org/example/endoscope/output/mapper/directory/DbDirectoryConverterImpl.class
+org/example/endoscope/output/dbo/UserEntity$UserEntityBuilder.class
+org/example/endoscope/output/dbo/DirectoryEntity.class
+org/example/endoscope/output/adapter/UserRepository.class
+org/example/endoscope/output/repository/ImageJpaRepository.class
+org/example/endoscope/output/dbo/ImageEntity$ImageEntityBuilder.class
+org/example/endoscope/output/dbo/UserEntity.class
+org/example/endoscope/output/mapper/directory/DbDirectoryConverter.class
+org/example/endoscope/output/mapper/directory/DbImageConverter.class
+org/example/endoscope/output/mapper/directory/DbImageConverterImpl.class
+org/example/endoscope/output/adapter/DirectoryRepository.class
+org/example/endoscope/output/dbo/DirectoryEntity$DirectoryEntityBuilder.class
+org/example/endoscope/output/adapter/ImageRepository.class
