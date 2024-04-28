@@ -1,10 +1,12 @@
+import backendBaseUrl from "../config"; // Import the backend base URL
+
 const createParentDirectory = async (directoryName, userToken) => {
   try {
     if (!userToken) {
       throw new Error("User not logged in");
     }
 
-    const response = await fetch("http://localhost:8080/directories", {
+    const response = await fetch(`${backendBaseUrl}/directories`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${userToken}`,
@@ -43,7 +45,7 @@ const createSubDirectory = async (
     }
 
     const response = await fetch(
-      `http://localhost:8080/directories/subDirectories/${parentDirectoryId}`,
+      `${backendBaseUrl}/directories/subDirectories/${parentDirectoryId}`,
       {
         method: "PUT",
         headers: {

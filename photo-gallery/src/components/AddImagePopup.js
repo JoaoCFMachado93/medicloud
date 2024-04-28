@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "./AuthProvider";
 import "./AddImagePopup.css"; // Import the CSS file
+import backendBaseUrl from "../config"; // Import the backend base URL
 
 const AddImagePopup = ({ directoryId, onClose }) => {
   const [imageData, setImageData] = useState("");
@@ -52,7 +53,7 @@ const AddImagePopup = ({ directoryId, onClose }) => {
       };
 
       const response = await fetch(
-        `http://localhost:8080/images/directory/${directoryId}`,
+        `${backendBaseUrl}/images/directory/${directoryId}`,
         {
           method: "PUT",
           headers: {

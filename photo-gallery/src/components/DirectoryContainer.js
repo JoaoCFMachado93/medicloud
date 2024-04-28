@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AlbumTree from "./AlbumTree";
 import { useAuth } from "./AuthProvider";
+import backendBaseUrl from "../config"; // Import the backend base URL
 
 const DirectoryContainer = ({ onSelectAlbum, onImageAdded }) => {
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ const DirectoryContainer = ({ onSelectAlbum, onImageAdded }) => {
           throw new Error("User not logged in");
         }
 
-        const response = await fetch("http://localhost:8080/directories", {
+        const response = await fetch(`${backendBaseUrl}/directories`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },

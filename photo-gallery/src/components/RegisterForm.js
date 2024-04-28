@@ -10,6 +10,7 @@ import {
   FaBook,
 } from "react-icons/fa"; // Import icons from react-icons library
 import "./RegisterForm.css"; // Import custom CSS for the register form
+import backendBaseUrl from "../config"; // Import the backend base URL
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ const RegisterForm = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/auth/signup`, {
+      const response = await fetch(`${backendBaseUrl}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

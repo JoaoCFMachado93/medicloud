@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthProvider";
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Import icons from react-icons library
 import "./LoginForm.css"; // Import custom CSS for the login form
+import backendBaseUrl from "../config"; // Import the backend base URL
 
 const LoginForm = () => {
   const { userLogin } = useAuth();
@@ -29,7 +30,7 @@ const LoginForm = () => {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:8080/auth/login`, {
+      const response = await fetch(`${backendBaseUrl}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

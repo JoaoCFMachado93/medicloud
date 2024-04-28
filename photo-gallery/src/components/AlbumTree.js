@@ -6,6 +6,7 @@ import {
   createParentDirectory,
   createSubDirectory,
 } from "../services/DirectoryService"; // Import the function
+import backendBaseUrl from "../config"; // Import the backend base URL
 
 const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
   const [selectedAlbum, setSelectedAlbum] = useState(null);
@@ -57,7 +58,7 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
         }
 
         const response = await fetch(
-          `http://localhost:8080/directories/subDirectories/${album.directoryId}`,
+          `${backendBaseUrl}/directories/subDirectories/${album.directoryId}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
@@ -118,7 +119,7 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
       );
       if (updatedData) {
         const response = await fetch(
-          `http://localhost:8080/directories/subDirectories/${parentDirectoryId}`,
+          `${backendBaseUrl}/directories/subDirectories/${parentDirectoryId}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,

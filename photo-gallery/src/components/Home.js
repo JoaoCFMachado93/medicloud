@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DirectoryContainer from "./DirectoryContainer";
 import ImageContainer from "./ImageContainer";
 import { useAuth } from "./AuthProvider"; // Import useAuth hook
+import backendBaseUrl from "../config"; // Import the backend base URL
 import "./Home.css";
 
 const Home = () => {
@@ -26,7 +27,7 @@ const Home = () => {
     if (selectedAlbum) {
       try {
         const response = await fetch(
-          `http://localhost:8080/images/directory/${selectedAlbum.directoryId}`,
+          `${backendBaseUrl}/images/directory/${selectedAlbum.directoryId}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,

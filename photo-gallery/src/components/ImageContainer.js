@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import ImageGallery from "./ImageGallery";
 import { useAuth } from "./AuthProvider";
+import backendBaseUrl from "../config"; // Import the backend base URL
 
 const ImageContainer = ({ selectedAlbum }) => {
   const [images, setImages] = useState([]);
@@ -19,7 +20,7 @@ const ImageContainer = ({ selectedAlbum }) => {
         }
 
         const response = await fetch(
-          `http://localhost:8080/images/directory/${selectedAlbum.directoryId}`,
+          `${backendBaseUrl}/images/directory/${selectedAlbum.directoryId}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
