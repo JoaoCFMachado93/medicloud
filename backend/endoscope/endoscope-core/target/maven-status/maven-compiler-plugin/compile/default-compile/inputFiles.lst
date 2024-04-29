@@ -7,6 +7,7 @@
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/domain/User.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/driver/DirectoryServicePort.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/service/SpringJwtService.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/domain/Country.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/driven/UserRepositoryPort.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/service/SpringImageService.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-core/src/main/java/org/example/endoscope/core/service/SpringAuthService.java

@@ -6,7 +6,7 @@ import {
   createParentDirectory,
   createSubDirectory,
 } from "../services/DirectoryService"; // Import the function
-import backendBaseUrl from "../config"; // Import the backend base URL
+import { backendBaseUrl } from "../config";
 
 const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
   const [selectedAlbum, setSelectedAlbum] = useState(null);

@@ -25,6 +25,10 @@ public class SpringAuthService implements AuthServicePort {
             throw new IllegalArgumentException("User with this email already exists");
         }
 
+        if (!isMedicalIdValid(user.getMedicalId())) {
+            throw new IllegalArgumentException("Invalid medical id");
+        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepositoryPort.save(user);
     }
@@ -43,4 +47,7 @@ public class SpringAuthService implements AuthServicePort {
         return user;
     }
 
+    private boolean isMedicalIdValid(String medicalId) {
+        return true;
+    }
 }

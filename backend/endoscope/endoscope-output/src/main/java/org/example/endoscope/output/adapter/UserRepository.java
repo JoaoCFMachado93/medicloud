@@ -32,9 +32,14 @@ public class UserRepository implements UserRepositoryPort {
         return new User(userEntity.getUserId(),
                 userEntity.getEmail(),
                 userEntity.getPassword(),
+                userEntity.getSalutation(),
+                userEntity.getGender(),
                 userEntity.getFullName(),
                 userEntity.getAge(),
+                userEntity.getDateOfBirth(),
+                userEntity.getCountryOfOrigin(),
                 userEntity.getWorkLocation(),
+                userEntity.getWorkPlaceSetting(),
                 userEntity.getMedicalId(),
                 userEntity.getMedicalSpeciality(),
                 userEntity.getEducation(),
@@ -46,9 +51,14 @@ public class UserRepository implements UserRepositoryPort {
                 .userId(user.getUserId())
                 .email(user.getEmail())
                 .password(user.getPassword())
+                .salutation(user.getSalutation())
+                .gender(user.getGender())
                 .fullName(user.getUsername())
                 .age(user.getAge())
+                .dateOfBirth(user.getDateOfBirth())
+                .countryOfOrigin(user.getCountryOfOrigin())
                 .workLocation(user.getWorkLocation())
+                .workPlaceSetting(user.getWorkPlaceSetting())
                 .medicalId(user.getMedicalId())
                 .medicalSpeciality(user.getMedicalSpeciality())
                 .education(user.getEducation())

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "./AuthProvider";
 import "./AddImagePopup.css"; // Import the CSS file
-import backendBaseUrl from "../config"; // Import the backend base URL
+import { backendBaseUrl } from "../config";
 
 const AddImagePopup = ({ directoryId, onClose }) => {
   const [imageData, setImageData] = useState("");

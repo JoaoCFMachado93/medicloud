@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DirectoryContainer from "./DirectoryContainer";
 import ImageContainer from "./ImageContainer";
 import { useAuth } from "./AuthProvider"; // Import useAuth hook
-import backendBaseUrl from "../config"; // Import the backend base URL
+import { backendBaseUrl } from "../config";
 import "./Home.css";
 
 const Home = () => {

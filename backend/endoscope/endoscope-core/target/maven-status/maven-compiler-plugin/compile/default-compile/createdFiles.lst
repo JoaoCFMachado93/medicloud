@@ -10,6 +10,7 @@ org/example/endoscope/core/service/SpringJwtService.class
 org/example/endoscope/core/driver/AuthServicePort.class
 org/example/endoscope/core/domain/User.class
 org/example/endoscope/core/service/SpringAuthService.class
+org/example/endoscope/core/domain/Country.class
 org/example/endoscope/core/driven/ImageRepositoryPort.class
 org/example/endoscope/core/domain/Directory.class
 org/example/endoscope/core/domain/User$UserBuilder.class

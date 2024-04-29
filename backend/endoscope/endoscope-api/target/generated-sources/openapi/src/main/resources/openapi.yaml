@@ -312,16 +312,25 @@ components:
   schemas:
     UserEntity:
       example:
-        workLocation: workLocation
-        password: password
         education: education
         role: role
+        gender: gender
         fullName: fullName
+        dateOfBirth: 2000-01-23
+        workPlaceSetting: workPlaceSetting
+        userId: 0
+        workLocation: workLocation
+        password: password
         medicalId: medicalId
+        salutation: salutation
+        countryOfOrigin: countryOfOrigin
         medicalSpeciality: medicalSpeciality
         email: email
-        age: 0
+        age: age
       properties:
+        userId:
+          description: The user's ID
+          type: integer
         email:
           description: The user's email address
           format: email
@@ -330,20 +339,36 @@ components:
           description: The user's password
           format: password
           type: string
+        salutation:
+          description: "The user's salutation (e.g., Mr., Ms., Dr.)"
+          type: string
+        gender:
+          description: The user's gender
+          type: string
         fullName:
           description: The user's full name
           type: string
         age:
           description: The user's age
-          type: integer
+          type: string
+        dateOfBirth:
+          description: The user's date of birth
+          format: date
+          type: string
+        countryOfOrigin:
+          description: The user's country of origin
+          type: string
         workLocation:
           description: The user's work location
+          type: string
+        workPlaceSetting:
+          description: The user's workplace setting
           type: string
         medicalId:
           description: The user's medical ID
           type: string
         medicalSpeciality:
-          description: The user's medical speciality
+          description: The user's medical specialty
           type: string
         education:
           description: The user's education

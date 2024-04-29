@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-29T00:14:09+0100",
+    date = "2024-04-29T10:44:56+0100",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21 (Eclipse Adoptium)"
 )
 @Component
@@ -21,11 +21,17 @@ public class UserConverterImpl implements UserConverter {
 
         UserEntity userEntity = new UserEntity();
 
+        userEntity.setUserId( (int) user.getUserId() );
         userEntity.setEmail( user.getEmail() );
         userEntity.setPassword( user.getPassword() );
+        userEntity.setSalutation( user.getSalutation() );
+        userEntity.setGender( user.getGender() );
         userEntity.setFullName( user.getFullName() );
         userEntity.setAge( user.getAge() );
+        userEntity.setDateOfBirth( user.getDateOfBirth() );
+        userEntity.setCountryOfOrigin( user.getCountryOfOrigin() );
         userEntity.setWorkLocation( user.getWorkLocation() );
+        userEntity.setWorkPlaceSetting( user.getWorkPlaceSetting() );
         userEntity.setMedicalId( user.getMedicalId() );
         userEntity.setMedicalSpeciality( user.getMedicalSpeciality() );
         userEntity.setEducation( user.getEducation() );
@@ -44,11 +50,14 @@ public class UserConverterImpl implements UserConverter {
 
         user.email( userEntity.getEmail() );
         user.password( userEntity.getPassword() );
+        user.salutation( userEntity.getSalutation() );
+        user.gender( userEntity.getGender() );
         user.fullName( userEntity.getFullName() );
-        if ( userEntity.getAge() != null ) {
-            user.age( userEntity.getAge() );
-        }
+        user.age( userEntity.getAge() );
+        user.dateOfBirth( userEntity.getDateOfBirth() );
+        user.countryOfOrigin( userEntity.getCountryOfOrigin() );
         user.workLocation( userEntity.getWorkLocation() );
+        user.workPlaceSetting( userEntity.getWorkPlaceSetting() );
         user.medicalId( userEntity.getMedicalId() );
         user.medicalSpeciality( userEntity.getMedicalSpeciality() );
         user.education( userEntity.getEducation() );

@@ -6,6 +6,8 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,9 +19,14 @@ public class User implements UserDetails {
     private long userId;
     private String email;
     private String password;
+    private String salutation;
+    private String gender;
     private String fullName;
-    private int age;
+    private String age;
+    private LocalDate dateOfBirth;
+    private String countryOfOrigin;
     private String workLocation;
+    private String workPlaceSetting;
     private String medicalId;
     private String medicalSpeciality;
     private String education;

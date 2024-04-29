@@ -1,4 +1,4 @@
-import backendBaseUrl from "../config"; // Import the backend base URL
+import { backendBaseUrl } from "../config";
 
 const createParentDirectory = async (directoryName, userToken) => {
   try {

@@ -292,6 +292,9 @@ components:
     UserEntity:
       type: object
       properties:
+        userId:
+          type: integer
+          description: The user's ID
         email:
           type: string
           format: email
@@ -300,21 +303,37 @@ components:
           type: string
           format: password
           description: The user's password
+        salutation:
+          type: string
+          description: The user's salutation (e.g., Mr., Ms., Dr.)
+        gender:
+          type: string
+          description: The user's gender
         fullName:
           type: string
           description: The user's full name
         age:
-          type: integer
+          type: string
           description: The user's age
+        dateOfBirth:
+          type: string
+          format: date
+          description: The user's date of birth
+        countryOfOrigin:
+          type: string
+          description: The user's country of origin
         workLocation:
           type: string
           description: The user's work location
+        workPlaceSetting:
+          type: string
+          description: The user's workplace setting
         medicalId:
           type: string
           description: The user's medical ID
         medicalSpeciality:
           type: string
-          description: The user's medical speciality
+          description: The user's medical specialty
         education:
           type: string
           description: The user's education

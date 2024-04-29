@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthProvider";
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Import icons from react-icons library
 import "./LoginForm.css"; // Import custom CSS for the login form
-import backendBaseUrl from "../config"; // Import the backend base URL
+import { backendBaseUrl } from "../config";
 
 const LoginForm = () => {
   const { userLogin } = useAuth();

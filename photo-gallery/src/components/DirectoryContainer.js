@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AlbumTree from "./AlbumTree";
 import { useAuth } from "./AuthProvider";
-import backendBaseUrl from "../config"; // Import the backend base URL
+import { backendBaseUrl } from "../config";
 
 const DirectoryContainer = ({ onSelectAlbum, onImageAdded }) => {
   const [loading, setLoading] = useState(true);

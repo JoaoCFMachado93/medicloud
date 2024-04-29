@@ -11,6 +11,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "user")
 @AllArgsConstructor
@@ -30,14 +33,29 @@ public class UserEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "salutation", nullable = false)
+    private String salutation;
+
+    @Column(name = "gender", nullable = false)
+    private String gender;
+
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
     @Column(name = "age", nullable = false)
-    private Integer age;
+    private String age;
+
+    @Column(name = "date_of_birth", nullable = false)
+    private LocalDate dateOfBirth;
+
+    @Column(name = "country_of_origin", nullable = false)
+    private String countryOfOrigin;
 
     @Column(name = "work_location", nullable = false)
     private String workLocation;
+
+    @Column(name = "work_place_setting", nullable = false)
+    private String workPlaceSetting;
 
     @Column(name = "medical_id", nullable = false)
     private String medicalId;
