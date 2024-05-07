@@ -1,5 +1,6 @@
 package org.example.endoscope.core.service;
 
+import jakarta.transaction.Transactional;
 import org.example.endoscope.core.domain.Image;
 import org.example.endoscope.core.driven.DirectoryRepositoryPort;
 import org.example.endoscope.core.driven.ImageRepositoryPort;
@@ -20,6 +21,7 @@ public class SpringImageService implements ImageServicePort {
     }
 
     @Override
+    @Transactional
     public void createImageInDirectory(long directoryId, List<Image> image) {
         if (image.isEmpty()) {
             return;
@@ -45,6 +47,12 @@ public class SpringImageService implements ImageServicePort {
         }
 
         return imageRepositoryPort.getImagesByDirectoryId(directoryId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteImage(long imageId) {
+        imageRepositoryPort.deleteImage(imageId);
     }
 }
 

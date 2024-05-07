@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * A delegate to be called by the {@link DirectoryApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-29T12:56:11.484884+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T22:46:29.933404+01:00[Europe/Lisbon]")
 public interface DirectoryApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {

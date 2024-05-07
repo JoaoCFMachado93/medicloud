@@ -1,5 +1,6 @@
 package org.example.endoscope.core.service;
 
+import jakarta.transaction.Transactional;
 import org.example.endoscope.core.domain.Directory;
 import org.example.endoscope.core.driven.DirectoryRepositoryPort;
 import org.example.endoscope.core.driver.DirectoryServicePort;
@@ -20,6 +21,7 @@ public class SpringDirectoryService implements DirectoryServicePort {
     }
 
     @Override
+    @Transactional
     public void createDirectory(List<Directory> directories) {
         if (directories.isEmpty()) {
             return;
@@ -34,6 +36,7 @@ public class SpringDirectoryService implements DirectoryServicePort {
     }
 
     @Override
+    @Transactional
     public void createSubDirectory(List<Directory> subDirectories) {
         if (subDirectories.isEmpty()) {
             return;

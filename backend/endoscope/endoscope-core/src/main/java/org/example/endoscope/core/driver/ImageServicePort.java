@@ -12,4 +12,5 @@ public interface ImageServicePort {
 
     List<Image> getImagesByDirectoryId(long directoryId);
 
+    void deleteImage(long imageId);
 }

@@ -1,7 +1,9 @@
 package org.example.endoscope.application.spring.configuration.auth;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,6 +38,12 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**")
                 .permitAll()
+                .requestMatchers(HttpMethod.PUT, "/**")
+                .hasAuthority("admin")
+                .requestMatchers(HttpMethod.POST, "/**")
+                .hasAuthority("admin")
+                .requestMatchers(HttpMethod.DELETE, "/**")
+                .hasAuthority("admin")
                 .anyRequest()
                 .authenticated()
                 .and()

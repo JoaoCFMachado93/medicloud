@@ -41,4 +41,9 @@ public class ImageRepository implements ImageRepositoryPort {
                 .map(dbImageConverter::dboToDomain)
                 .toList();
     }
+
+    @Override
+    public void deleteImage(long imageId) {
+        imageJpaRepository.deleteById(imageId);
+    }
 }

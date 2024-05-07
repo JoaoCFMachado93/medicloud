@@ -12,4 +12,5 @@ public interface ImageRepositoryPort {
 
     List<Image> getImagesByDirectoryId(long directoryId);
 
+    void deleteImage(long imageId);
 }

@@ -222,6 +222,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
+    delete:
+      tags:
+        - image
+      summary: Delete image
+      description: Delete image
+      operationId: deleteImage
+      parameters:
+        - in: path
+          name: imageId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
 
   /images/directory/{directoryId}:
     get:

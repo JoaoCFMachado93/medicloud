@@ -46,4 +46,11 @@ public class ImagesAPIDelegateImpl implements ImageApiDelegate {
                 .map(imageConverter::domainToDto)
                 .toList());
     }
+
+    @Override
+    public ResponseEntity<Void> deleteImage(Integer imageId) {
+        log.info("Deleting image by id: {}", imageId);
+        imageServicePort.deleteImage(imageId);
+        return ResponseEntity.ok().build();
+    }
 }

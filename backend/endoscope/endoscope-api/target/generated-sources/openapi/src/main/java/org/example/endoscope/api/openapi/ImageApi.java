@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-29T12:56:11.484884+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T22:46:29.933404+01:00[Europe/Lisbon]")
 @Validated
 @Controller
 @Tag(name = "image", description = "image API")
@@ -74,6 +74,38 @@ public interface ImageApi {
         @Parameter(name = "ImageEntity", description = "Image to create", required = true) @Valid @RequestBody List<ImageEntity> imageEntity
     ) {
         return getDelegate().createImageInDirectory(directoryId, imageEntity);
+    }
+
+
+    /**
+     * DELETE /images/{imageId} : Delete image
+     * Delete image
+     *
+     * @param imageId  (required)
+     * @return Successful operation (status code 200)
+     *         or Internal Server Error (status code 500)
+     */
+    @Operation(
+        operationId = "deleteImage",
+        summary = "Delete image",
+        description = "Delete image",
+        tags = { "image" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = InternalServerError.class))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.DELETE,
+        value = "/images/{imageId}",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<Void> deleteImage(
+        @Parameter(name = "imageId", description = "", required = true, in = ParameterIn.PATH) @PathVariable("imageId") Integer imageId
+    ) {
+        return getDelegate().deleteImage(imageId);
     }
 
 
