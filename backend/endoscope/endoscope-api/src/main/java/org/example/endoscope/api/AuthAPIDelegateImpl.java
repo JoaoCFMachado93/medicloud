@@ -48,6 +48,7 @@ public class AuthAPIDelegateImpl implements AuthApiDelegate {
                 .token(jwtToken)
                 .expiration(jwtServicePort.getExpirationTime())
                 .email(user.getEmail())
+                .name(user.getFullName())
                 .role(user.getRole());
 
         return ResponseEntity.ok(userLoginResponse);

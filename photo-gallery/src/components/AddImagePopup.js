@@ -42,11 +42,11 @@ const AddImagePopup = ({ directoryId, onClose }) => {
       }
       // Extract base64 string from data URL
       const base64String = imageData.split(",")[1]; // Split at comma and get the second part
-
+      console.log(user)
       const formData = {
         imageName,
         directory: directoryId, // Include directoryId
-        uploadedBy: user.email, // Change as needed
+        uploadedBy: user.name, // Change as needed
         uploadDate: Date.now(),
         description: imageDescription,
         imageData: base64String, // Use the extracted base64 string

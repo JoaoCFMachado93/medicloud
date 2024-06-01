@@ -445,6 +445,7 @@ components:
     UserLoginResponse:
       example:
         role: role
+        name: name
         expiration: ""
         email: email
         token: token
@@ -458,6 +459,10 @@ components:
           type: long
         email:
           description: The user's email
+          format: string
+          type: string
+        name:
+          description: The user's name
           format: string
           type: string
         role:

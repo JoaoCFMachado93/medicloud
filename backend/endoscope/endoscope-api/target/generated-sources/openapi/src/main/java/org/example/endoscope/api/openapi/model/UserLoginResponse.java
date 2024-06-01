@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * UserLoginResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:04:06.241327+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:22:00.972348+01:00[Europe/Lisbon]")
 public class UserLoginResponse {
 
   private String token;
@@ -26,6 +26,8 @@ public class UserLoginResponse {
   private Long expiration = null;
 
   private String email;
+
+  private String name;
 
   private String role;
 
@@ -89,6 +91,26 @@ public class UserLoginResponse {
     this.email = email;
   }
 
+  public UserLoginResponse name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * The user's name
+   * @return name
+  */
+  
+  @Schema(name = "name", description = "The user's name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public UserLoginResponse role(String role) {
     this.role = role;
     return this;
@@ -121,12 +143,13 @@ public class UserLoginResponse {
     return Objects.equals(this.token, userLoginResponse.token) &&
         Objects.equals(this.expiration, userLoginResponse.expiration) &&
         Objects.equals(this.email, userLoginResponse.email) &&
+        Objects.equals(this.name, userLoginResponse.name) &&
         Objects.equals(this.role, userLoginResponse.role);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(token, expiration, email, role);
+    return Objects.hash(token, expiration, email, name, role);
   }
 
   @Override
@@ -136,6 +159,7 @@ public class UserLoginResponse {
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("}");
     return sb.toString();

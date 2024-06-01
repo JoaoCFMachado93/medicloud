@@ -409,6 +409,10 @@ components:
           type: string
           format: string
           description: The user's email
+        name:
+          type: string
+          format: string
+          description: The user's name
         role:
           type: string
           format: string
