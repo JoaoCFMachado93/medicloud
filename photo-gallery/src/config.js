@@ -1,5 +1,5 @@
 // config.js
-const backendBaseUrl = "http://localhost:8080"; // Update this with your backend base URL
+const backendBaseUrl = "https://medicloud-backend.onrender.com"; // Update this with your backend base URL
 
 const SALUTATION_OPTIONS = ["Dr.", "Prof.", "Mr.", "Ms.", "Mx.", "Nurse"];
 const GENDER_OPTIONS = ["Male", "Female", "Other"];
