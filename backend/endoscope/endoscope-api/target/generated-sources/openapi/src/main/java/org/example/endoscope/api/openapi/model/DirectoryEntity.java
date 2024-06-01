@@ -18,12 +18,14 @@ import javax.annotation.Generated;
  * DirectoryEntity
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T22:46:29.933404+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:04:06.241327+01:00[Europe/Lisbon]")
 public class DirectoryEntity {
 
   private Integer directoryId;
 
   private String directoryName;
+
+  private String directoryDescription;
 
   private Integer parentDirectory;
 
@@ -67,6 +69,26 @@ public class DirectoryEntity {
     this.directoryName = directoryName;
   }
 
+  public DirectoryEntity directoryDescription(String directoryDescription) {
+    this.directoryDescription = directoryDescription;
+    return this;
+  }
+
+  /**
+   * The directory description
+   * @return directoryDescription
+  */
+  
+  @Schema(name = "directoryDescription", description = "The directory description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("directoryDescription")
+  public String getDirectoryDescription() {
+    return directoryDescription;
+  }
+
+  public void setDirectoryDescription(String directoryDescription) {
+    this.directoryDescription = directoryDescription;
+  }
+
   public DirectoryEntity parentDirectory(Integer parentDirectory) {
     this.parentDirectory = parentDirectory;
     return this;
@@ -98,12 +120,13 @@ public class DirectoryEntity {
     DirectoryEntity directoryEntity = (DirectoryEntity) o;
     return Objects.equals(this.directoryId, directoryEntity.directoryId) &&
         Objects.equals(this.directoryName, directoryEntity.directoryName) &&
+        Objects.equals(this.directoryDescription, directoryEntity.directoryDescription) &&
         Objects.equals(this.parentDirectory, directoryEntity.parentDirectory);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(directoryId, directoryName, parentDirectory);
+    return Objects.hash(directoryId, directoryName, directoryDescription, parentDirectory);
   }
 
   @Override
@@ -112,6 +135,7 @@ public class DirectoryEntity {
     sb.append("class DirectoryEntity {\n");
     sb.append("    directoryId: ").append(toIndentedString(directoryId)).append("\n");
     sb.append("    directoryName: ").append(toIndentedString(directoryName)).append("\n");
+    sb.append("    directoryDescription: ").append(toIndentedString(directoryDescription)).append("\n");
     sb.append("    parentDirectory: ").append(toIndentedString(parentDirectory)).append("\n");
     sb.append("}");
     return sb.toString();

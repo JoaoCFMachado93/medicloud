@@ -132,6 +132,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
+    post:
+      tags:
+        - directory
+      summary: Add or Edit description of directory
+      description: Add or Edit description of directory
+      operationId: addOrEditDirectoryDescription
+      requestBody:
+        description: Directory description to add or edit
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryDescriptionUpsert'
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
 
   /directories/subDirectories/{directoryId}:
     get:
@@ -415,9 +437,23 @@ components:
         directoryName:
           type: string
           description: The directory name
+        directoryDescription:
+          type: string
+          description: The directory description
         parentDirectory:
           type: integer
           description: The parent directory id
+
+    DirectoryDescriptionUpsert:
+      type: object
+      properties:
+        directoryId:
+          type: long
+          description: The directory ID
+        description:
+          type: string
+          description: The directory description
+
     ImageEntity:
       type: object
       properties:

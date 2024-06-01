@@ -59,3 +59,10 @@
   display: flex;
   flex-grow: 1;
 }
+
+.directory-description {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #555;
+}
+

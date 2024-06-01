@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import DirectoryContainer from "./DirectoryContainer";
 import ImageContainer from "./ImageContainer";
-import { useAuth } from "./AuthProvider"; // Import useAuth hook
+import { useAuth } from "./AuthProvider";
 import { backendBaseUrl } from "../config";
 import "./Home.css";
 
 const Home = () => {
-  const { getUser, userLogout } = useAuth(); // Destructure userLogout from useAuth
+  const { getUser, userLogout } = useAuth();
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [images, setImages] = useState([]);
-  const [imageContainerKey, setImageContainerKey] = useState(0); // Add state for key
+  const [imageContainerKey, setImageContainerKey] = useState(0);
+  const [directoryDescription, setDirectoryDescription] = useState("");
 
   const user = getUser();
 
-  const handleSelectAlbum = (album) => {
+  const handleSelectAlbum = (album, description) => {
     setSelectedAlbum(album);
+    setDirectoryDescription(description);
     console.log("Selected album:", album);
+    console.log("Directory description:", description);
   };
 
   const handleLogout = () => {
@@ -23,7 +26,6 @@ const Home = () => {
   };
 
   const handleImageAdded = async () => {
-    // Call fetchImages again after adding an image to update the images for the selected album
     if (selectedAlbum) {
       try {
         const response = await fetch(
@@ -38,9 +40,8 @@ const Home = () => {
           throw new Error("Failed to fetch images");
         }
         const data = await response.json();
-        console.log(data);
         setImages(data);
-        setImageContainerKey((prevKey) => prevKey + 1); // Update key to force reload
+        setImageContainerKey((prevKey) => prevKey + 1);
       } catch (error) {
         console.error("Error fetching images:", error);
       }
@@ -64,8 +65,7 @@ const Home = () => {
             />
             <button className="profile-button" onClick={handleLogout}>
               Logout
-            </button>{" "}
-            {/* Add logout button */}
+            </button>
           </div>
         </nav>
       </div>
@@ -80,8 +80,8 @@ const Home = () => {
           key={imageContainerKey}
           images={images}
           selectedAlbum={selectedAlbum}
-        />{" "}
-        {/* Use key to force reload */}
+          directoryDescription={directoryDescription}
+        />
       </div>
     </div>
   );

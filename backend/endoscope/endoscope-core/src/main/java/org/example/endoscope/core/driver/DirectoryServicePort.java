@@ -13,4 +13,6 @@ public interface DirectoryServicePort {
     List<Directory> getSubDirectories(long directoryId);
 
     void createSubDirectory(List<Directory> subDirectories);
+
+    void addOrEditDirectoryDescription(Long directoryId, String description);
 }

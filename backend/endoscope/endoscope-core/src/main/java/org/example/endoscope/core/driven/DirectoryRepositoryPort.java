@@ -16,4 +16,5 @@ public interface DirectoryRepositoryPort {
 
     void createSubDirectories(List<Directory> subDirectories);
 
+    void addOrEditDirectoryDescription(Long directory, String description);
 }

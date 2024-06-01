@@ -1,5 +1,6 @@
 package org.example.endoscope.api.openapi;
 
+import org.example.endoscope.api.openapi.model.DirectoryDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.DirectoryEntity;
 import org.example.endoscope.api.openapi.model.InternalServerError;
 import java.util.List;
@@ -18,11 +19,25 @@ import javax.annotation.Generated;
  * A delegate to be called by the {@link DirectoryApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T22:46:29.933404+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:04:06.241327+01:00[Europe/Lisbon]")
 public interface DirectoryApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
+    }
+
+    /**
+     * POST /directories : Add or Edit description of directory
+     * Add or Edit description of directory
+     *
+     * @param directoryDescriptionUpsert Directory description to add or edit (required)
+     * @return OK (status code 200)
+     *         or Internal Server Error (status code 500)
+     * @see DirectoryApi#addOrEditDirectoryDescription
+     */
+    default ResponseEntity<Void> addOrEditDirectoryDescription(DirectoryDescriptionUpsert directoryDescriptionUpsert) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
     /**
@@ -67,7 +82,7 @@ public interface DirectoryApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryName\" : \"directoryName\" }, { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryName\" : \"directoryName\" } ]";
+                    String exampleString = "[ { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" }, { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -90,7 +105,7 @@ public interface DirectoryApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryName\" : \"directoryName\" }, { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryName\" : \"directoryName\" } ]";
+                    String exampleString = "[ { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" }, { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

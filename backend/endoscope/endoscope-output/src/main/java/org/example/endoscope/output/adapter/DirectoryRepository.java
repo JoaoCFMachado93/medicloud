@@ -57,4 +57,13 @@ public class DirectoryRepository implements DirectoryRepositoryPort {
 
         directoryJpaRepository.saveAll(subDirectoryEntityList);
     }
+
+    @Override
+    public void addOrEditDirectoryDescription(Long directory, String description) {
+        directoryJpaRepository.findById(directory)
+                .ifPresent(directoryEntity -> {
+                    directoryEntity.setDirectoryDescription(description);
+                    directoryJpaRepository.save(directoryEntity);
+                });
+    }
 }

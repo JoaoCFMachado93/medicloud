@@ -40,7 +40,7 @@ const DirectoryContainer = ({ onSelectAlbum, onImageAdded }) => {
     };
 
     fetchDirectories();
-  }, [getUser]); // Include getUser in the dependency array
+  }, [getUser]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -50,10 +50,14 @@ const DirectoryContainer = ({ onSelectAlbum, onImageAdded }) => {
     return <div>Error: {error}</div>;
   }
 
+  const handleSelectAlbum = (album) => {
+    onSelectAlbum(album, album.directoryDescription);
+  };
+
   return (
     <AlbumTree
       albums={directories}
-      onSelectAlbum={onSelectAlbum}
+      onSelectAlbum={handleSelectAlbum}
       onImageAdded={onImageAdded}
     />
   );

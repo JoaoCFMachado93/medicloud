@@ -27,6 +27,7 @@ org/example/endoscope/api/mapper/directory/ImageConverter.class
 org/example/endoscope/api/openapi/DirectoryApi$1.class
 org/openapitools/configuration/HomeController.class
 org/example/endoscope/api/mapper/directory/DirectoryConverter.class
+org/example/endoscope/api/openapi/model/DirectoryDescriptionUpsert.class
 org/example/endoscope/api/openapi/ImageApi$1.class
 org/example/endoscope/api/openapi/model/UserLoginResponse.class
 org/example/endoscope/api/openapi/ApiUtil.class

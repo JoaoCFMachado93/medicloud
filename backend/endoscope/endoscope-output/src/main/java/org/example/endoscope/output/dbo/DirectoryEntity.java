@@ -29,6 +29,9 @@ public class DirectoryEntity {
     @Column(name = "directory_name")
     private String directoryName;
 
+    @Column(name = "directory_description")
+    private String directoryDescription;
+
     @ManyToOne
     @JoinColumn(name = "parent_directory_id")
     private DirectoryEntity parentDirectory;

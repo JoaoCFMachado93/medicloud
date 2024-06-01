@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * BadRequestError
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T22:46:29.933404+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:04:06.241327+01:00[Europe/Lisbon]")
 public class BadRequestError {
 
   private String message;

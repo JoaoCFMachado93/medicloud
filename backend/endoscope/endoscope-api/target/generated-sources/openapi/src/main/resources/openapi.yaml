@@ -111,6 +111,32 @@ paths:
       x-accepts: application/json
       x-tags:
       - tag: directory
+    post:
+      description: Add or Edit description of directory
+      operationId: addOrEditDirectoryDescription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryDescriptionUpsert'
+        description: Directory description to add or edit
+        required: true
+      responses:
+        "200":
+          description: OK
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: Add or Edit description of directory
+      tags:
+      - directory
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: directory
     put:
       description: Create directory
       operationId: createDirectory
@@ -455,6 +481,7 @@ components:
       example:
         parentDirectory: 6
         directoryId: 0
+        directoryDescription: directoryDescription
         directoryName: directoryName
       properties:
         directoryId:
@@ -463,9 +490,24 @@ components:
         directoryName:
           description: The directory name
           type: string
+        directoryDescription:
+          description: The directory description
+          type: string
         parentDirectory:
           description: The parent directory id
           type: integer
+      type: object
+    DirectoryDescriptionUpsert:
+      example:
+        description: description
+        directoryId: ""
+      properties:
+        directoryId:
+          description: The directory ID
+          type: long
+        description:
+          description: The directory description
+          type: string
       type: object
     ImageEntity:
       example:

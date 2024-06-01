@@ -5,6 +5,7 @@
  */
 package org.example.endoscope.api.openapi;
 
+import org.example.endoscope.api.openapi.model.DirectoryDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.DirectoryEntity;
 import org.example.endoscope.api.openapi.model.InternalServerError;
 import java.util.List;
@@ -32,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T22:46:29.933404+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:04:06.241327+01:00[Europe/Lisbon]")
 @Validated
 @Controller
 @Tag(name = "directory", description = "directory API")
@@ -41,6 +42,39 @@ public interface DirectoryApi {
     default DirectoryApiDelegate getDelegate() {
         return new DirectoryApiDelegate() {};
     }
+
+    /**
+     * POST /directories : Add or Edit description of directory
+     * Add or Edit description of directory
+     *
+     * @param directoryDescriptionUpsert Directory description to add or edit (required)
+     * @return OK (status code 200)
+     *         or Internal Server Error (status code 500)
+     */
+    @Operation(
+        operationId = "addOrEditDirectoryDescription",
+        summary = "Add or Edit description of directory",
+        description = "Add or Edit description of directory",
+        tags = { "directory" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = InternalServerError.class))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.POST,
+        value = "/directories",
+        produces = { "application/json" },
+        consumes = { "application/json" }
+    )
+    default ResponseEntity<Void> addOrEditDirectoryDescription(
+        @Parameter(name = "DirectoryDescriptionUpsert", description = "Directory description to add or edit", required = true) @Valid @RequestBody DirectoryDescriptionUpsert directoryDescriptionUpsert
+    ) {
+        return getDelegate().addOrEditDirectoryDescription(directoryDescriptionUpsert);
+    }
+
 
     /**
      * PUT /directories : Create directory

@@ -3,6 +3,7 @@
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/openapitools/OpenApiGeneratorApplication.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/DirectoryEntity.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/openapitools/RFC3339DateFormat.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/DirectoryDescriptionUpsert.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/DirectoryApiController.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/BadRequestError.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/ImageApiDelegate.java

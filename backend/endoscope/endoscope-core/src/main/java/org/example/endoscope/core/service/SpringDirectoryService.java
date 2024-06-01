@@ -44,5 +44,12 @@ public class SpringDirectoryService implements DirectoryServicePort {
 
         directoryRepositoryPort.createSubDirectories(subDirectories);
     }
+
+    @Override
+    @Transactional
+    public void addOrEditDirectoryDescription(Long directoryId, String description) {
+        directoryRepositoryPort.addOrEditDirectoryDescription(directoryId, description);
+
+    }
 }
 

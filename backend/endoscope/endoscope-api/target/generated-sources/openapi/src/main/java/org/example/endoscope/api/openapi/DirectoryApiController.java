@@ -1,5 +1,6 @@
 package org.example.endoscope.api.openapi;
 
+import org.example.endoscope.api.openapi.model.DirectoryDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.DirectoryEntity;
 import org.example.endoscope.api.openapi.model.InternalServerError;
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T22:46:29.933404+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:04:06.241327+01:00[Europe/Lisbon]")
 @Controller
 @RequestMapping("${openapi.aPIForEndoscope.base-path:}")
 public class DirectoryApiController implements DirectoryApi {
