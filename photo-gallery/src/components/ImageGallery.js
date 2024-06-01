@@ -1,4 +1,3 @@
-// ImageGallery.js
 import React, { useState } from "react";
 import "./ImageGallery.css";
 import ImageDetailsPopup from "./ImageDetailsPopup";
@@ -6,20 +5,15 @@ import { FaTrash } from "react-icons/fa";
 import { useAuth } from "./AuthProvider";
 import { backendBaseUrl } from "../config";
 
-const ImageGallery = ({ images, onDeleteImage }) => {
+const ImageGallery = ({ images, fetchImages, onDeleteImage }) => {
   const [showImageDetailsPopup, setShowImageDetailsPopup] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const { getUser } = useAuth();
   const user = getUser();
   const isAdmin = user && user.role.toUpperCase() === "ADMIN";
 
-  const handleImageCardClick = (
-    imageData,
-    imageDescription,
-    uploadedBy,
-    uploadDate
-  ) => {
-    setSelectedImage({ imageData, imageDescription, uploadedBy, uploadDate });
+  const handleImageCardClick = (imageId, imageData, imageDescription, uploadedBy, uploadDate) => {
+    setSelectedImage({ imageId, imageData, imageDescription, uploadedBy, uploadDate });
     setShowImageDetailsPopup(true);
   };
 
@@ -32,34 +26,33 @@ const ImageGallery = ({ images, onDeleteImage }) => {
     try {
       const response = await fetch(`${backendBaseUrl}/images/${imageId}`, {
         method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
+        headers: { Authorization: `Bearer ${user.token}` },
       });
-      if (!response.ok) {
-        throw new Error("Failed to delete image");
-      }
+      if (!response.ok) throw new Error("Failed to delete image");
       onDeleteImage();
+      fetchImages(); // Refresh images after deletion
     } catch (error) {
       console.error("Error deleting image:", error);
     }
   };
 
+  const handleDescriptionUpdate = () => {
+    fetchImages(); // Refresh images after description update
+  };
+
   return (
     <div className="image-gallery">
-      {/* Existing code to render images */}
       {images.map((image) => (
         <div
           key={image.imageId}
           className="image-card"
-          onClick={() =>
-            handleImageCardClick(
-              image.imageData,
-              image.description,
-              image.uploadedBy,
-              image.uploadDate
-            )
-          }
+          onClick={() => handleImageCardClick(
+            image.imageId,
+            image.imageData,
+            image.description,
+            image.uploadedBy,
+            image.uploadDate
+          )}
         >
           <div className="image-wrapper">
             <img
@@ -80,21 +73,20 @@ const ImageGallery = ({ images, onDeleteImage }) => {
           </div>
           <div className="image-details">
             <p>Uploaded by: {image.uploadedBy}</p>
-            <p>
-              Upload Date:{" "}
-              {new Date(image.uploadDate).toLocaleDateString()}
-            </p>
+            <p>Upload Date: {new Date(image.uploadDate).toLocaleDateString()}</p>
             <p>Description: {image.description}</p>
           </div>
         </div>
       ))}
       {showImageDetailsPopup && selectedImage && (
         <ImageDetailsPopup
+          imageId={selectedImage.imageId}
           imageData={selectedImage.imageData}
           imageDescription={selectedImage.imageDescription}
           uploadedBy={selectedImage.uploadedBy}
           uploadDate={selectedImage.uploadDate}
           onClose={() => setShowImageDetailsPopup(false)}
+          onDescriptionUpdate={handleDescriptionUpdate}
         />
       )}
     </div>

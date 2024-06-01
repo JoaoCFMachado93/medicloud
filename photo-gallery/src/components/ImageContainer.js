@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import ImageGallery from "./ImageGallery";
 import { useAuth } from "./AuthProvider";
 import { backendBaseUrl } from "../config";
-import "./ImageContainer.css"; // Import the CSS file for styling
+import "./ImageContainer.css";
 
 const ImageContainer = ({ selectedAlbum, directoryDescription }) => {
   const [images, setImages] = useState([]);
@@ -15,22 +15,12 @@ const ImageContainer = ({ selectedAlbum, directoryDescription }) => {
 
     try {
       const user = getUser();
+      if (!user) throw new Error("User not logged in");
 
-      if (!user) {
-        throw new Error("User not logged in");
-      }
-
-      const response = await fetch(
-        `${backendBaseUrl}/images/directory/${selectedAlbum.directoryId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch images");
-      }
+      const response = await fetch(`${backendBaseUrl}/images/directory/${selectedAlbum.directoryId}`, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      if (!response.ok) throw new Error("Failed to fetch images");
       const data = await response.json();
       setImages(data);
     } catch (error) {
@@ -57,10 +47,7 @@ const ImageContainer = ({ selectedAlbum, directoryDescription }) => {
   const handleSaveDescription = async () => {
     try {
       const user = getUser();
-
-      if (!user) {
-        throw new Error("User not logged in");
-      }
+      if (!user) throw new Error("User not logged in");
 
       const response = await fetch(`${backendBaseUrl}/directories`, {
         method: "POST",
@@ -74,10 +61,7 @@ const ImageContainer = ({ selectedAlbum, directoryDescription }) => {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to update description");
-      }
-
+      if (!response.ok) throw new Error("Failed to update description");
       setIsEditing(false);
     } catch (error) {
       console.error("Error updating description:", error);
@@ -98,12 +82,8 @@ const ImageContainer = ({ selectedAlbum, directoryDescription }) => {
               onChange={handleDescriptionChange}
             />
             <div className="button-group">
-              <button className="btn save-btn" onClick={handleSaveDescription}>
-                Save
-              </button>
-              <button className="btn cancel-btn" onClick={() => setIsEditing(false)}>
-                Cancel
-              </button>
+              <button className="btn save-btn" onClick={handleSaveDescription}>Save</button>
+              <button className="btn cancel-btn" onClick={() => setIsEditing(false)}>Cancel</button>
             </div>
           </div>
         ) : (
@@ -117,11 +97,7 @@ const ImageContainer = ({ selectedAlbum, directoryDescription }) => {
           </div>
         )}
       </div>
-      <ImageGallery
-        images={images}
-        selectedAlbum={selectedAlbum}
-        onDeleteImage={handleDeleteImage}
-      />
+      <ImageGallery images={images} fetchImages={fetchImages} onDeleteImage={handleDeleteImage} />
     </div>
   );
 };
