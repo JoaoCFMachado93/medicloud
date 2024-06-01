@@ -217,6 +217,29 @@ paths:
   #############################
   # Image API                 #
   #############################
+  /images:
+    post:
+      tags:
+        - image
+      summary: Edit description of Image
+      description: Edit description of Image
+      operationId: editImageDescription
+      requestBody:
+        description: Image description to edit
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageDescriptionUpsert'
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
 
   /images/{imageId}:
     get:
@@ -483,6 +506,16 @@ components:
           type: string
           format: byte
           description: Binary image data in base64 format
+
+    ImageDescriptionUpsert:
+      type: object
+      properties:
+        imageId:
+          type: long
+          description: The image ID
+        description:
+          type: string
+          description: The image description
 
     InternalServerError:
       type: object

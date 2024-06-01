@@ -1,5 +1,6 @@
 package org.example.endoscope.api.openapi;
 
+import org.example.endoscope.api.openapi.model.ImageDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.ImageEntity;
 import org.example.endoscope.api.openapi.model.InternalServerError;
 import java.util.List;
@@ -18,7 +19,7 @@ import javax.annotation.Generated;
  * A delegate to be called by the {@link ImageApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:22:00.972348+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T09:06:15.746289+01:00[Europe/Lisbon]")
 public interface ImageApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -51,6 +52,20 @@ public interface ImageApiDelegate {
      * @see ImageApi#deleteImage
      */
     default ResponseEntity<Void> deleteImage(Integer imageId) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    /**
+     * POST /images : Edit description of Image
+     * Edit description of Image
+     *
+     * @param imageDescriptionUpsert Image description to edit (required)
+     * @return OK (status code 200)
+     *         or Internal Server Error (status code 500)
+     * @see ImageApi#editImageDescription
+     */
+    default ResponseEntity<Void> editImageDescription(ImageDescriptionUpsert imageDescriptionUpsert) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

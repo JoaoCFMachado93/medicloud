@@ -5,6 +5,7 @@
  */
 package org.example.endoscope.api.openapi;
 
+import org.example.endoscope.api.openapi.model.ImageDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.ImageEntity;
 import org.example.endoscope.api.openapi.model.InternalServerError;
 import java.util.List;
@@ -32,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:22:00.972348+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T09:06:15.746289+01:00[Europe/Lisbon]")
 @Validated
 @Controller
 @Tag(name = "image", description = "image API")
@@ -106,6 +107,39 @@ public interface ImageApi {
         @Parameter(name = "imageId", description = "", required = true, in = ParameterIn.PATH) @PathVariable("imageId") Integer imageId
     ) {
         return getDelegate().deleteImage(imageId);
+    }
+
+
+    /**
+     * POST /images : Edit description of Image
+     * Edit description of Image
+     *
+     * @param imageDescriptionUpsert Image description to edit (required)
+     * @return OK (status code 200)
+     *         or Internal Server Error (status code 500)
+     */
+    @Operation(
+        operationId = "editImageDescription",
+        summary = "Edit description of Image",
+        description = "Edit description of Image",
+        tags = { "image" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = InternalServerError.class))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.POST,
+        value = "/images",
+        produces = { "application/json" },
+        consumes = { "application/json" }
+    )
+    default ResponseEntity<Void> editImageDescription(
+        @Parameter(name = "ImageDescriptionUpsert", description = "Image description to edit", required = true) @Valid @RequestBody ImageDescriptionUpsert imageDescriptionUpsert
+    ) {
+        return getDelegate().editImageDescription(imageDescriptionUpsert);
     }
 
 

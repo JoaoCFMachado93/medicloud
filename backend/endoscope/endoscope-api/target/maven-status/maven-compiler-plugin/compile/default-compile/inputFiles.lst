@@ -23,6 +23,7 @@
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/src/main/java/org/example/endoscope/api/DirectoriesAPIDelegateImpl.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/ImageApi.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/src/main/java/org/example/endoscope/api/AuthAPIDelegateImpl.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/ImageDescriptionUpsert.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/src/main/java/org/example/endoscope/api/mapper/directory/ImageConverter.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/openapitools/configuration/SpringDocConfiguration.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/AuthApiDelegate.java

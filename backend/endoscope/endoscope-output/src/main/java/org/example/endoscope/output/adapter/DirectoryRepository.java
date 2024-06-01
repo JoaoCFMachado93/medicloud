@@ -37,6 +37,7 @@ public class DirectoryRepository implements DirectoryRepositoryPort {
         List<DirectoryEntity> directoryEntityList = directories.stream()
                 .map(dbDirectoryConverter::domainToDbo)
                 .peek(directoryEntity -> directoryEntity.setParentDirectory(null))
+                .peek(directoryEntity -> directoryEntity.setDirectoryDescription(" "))
                 .toList();
 
         directoryJpaRepository.saveAll(directoryEntityList);
@@ -53,6 +54,7 @@ public class DirectoryRepository implements DirectoryRepositoryPort {
     public void createSubDirectories(List<Directory> directories) {
         List<DirectoryEntity> subDirectoryEntityList = directories.stream()
                 .map(dbDirectoryConverter::domainToDbo)
+                .peek(directoryEntity -> directoryEntity.setDirectoryDescription(" "))
                 .toList();
 
         directoryJpaRepository.saveAll(subDirectoryEntityList);

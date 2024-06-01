@@ -1,5 +1,6 @@
 package org.example.endoscope.api.openapi;
 
+import org.example.endoscope.api.openapi.model.ImageDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.ImageEntity;
 import org.example.endoscope.api.openapi.model.InternalServerError;
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:22:00.972348+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T09:06:15.746289+01:00[Europe/Lisbon]")
 @Controller
 @RequestMapping("${openapi.aPIForEndoscope.base-path:}")
 public class ImageApiController implements ImageApi {

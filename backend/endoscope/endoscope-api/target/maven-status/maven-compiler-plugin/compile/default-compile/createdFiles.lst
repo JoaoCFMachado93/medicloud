@@ -20,6 +20,7 @@ org/example/endoscope/api/openapi/DirectoryApi.class
 org/example/endoscope/api/openapi/ImageApiController.class
 org/example/endoscope/api/openapi/AuthApiController.class
 org/example/endoscope/api/openapi/DirectoryApiDelegate.class
+org/example/endoscope/api/openapi/model/ImageDescriptionUpsert.class
 org/example/endoscope/api/openapi/model/UserEntity.class
 org/example/endoscope/api/openapi/ImageApi.class
 org/example/endoscope/api/openapi/AuthApi.class

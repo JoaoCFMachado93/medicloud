@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * InternalServerError
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T03:22:00.972348+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-01T09:06:15.746289+01:00[Europe/Lisbon]")
 public class InternalServerError {
 
   private String message;

@@ -54,5 +54,11 @@ public class SpringImageService implements ImageServicePort {
     public void deleteImage(long imageId) {
         imageRepositoryPort.deleteImage(imageId);
     }
+
+    @Override
+    @Transactional
+    public void editImageDescription(Long imageId, String description) {
+        imageRepositoryPort.editImageDescription(imageId, description);
+    }
 }
 

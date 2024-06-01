@@ -234,6 +234,33 @@ paths:
       x-accepts: application/json
       x-tags:
       - tag: directory
+  /images:
+    post:
+      description: Edit description of Image
+      operationId: editImageDescription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageDescriptionUpsert'
+        description: Image description to edit
+        required: true
+      responses:
+        "200":
+          description: OK
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: Edit description of Image
+      tags:
+      - image
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: image
   /images/{imageId}:
     delete:
       description: Delete image
@@ -545,6 +572,18 @@ components:
         imageData:
           description: Binary image data in base64 format
           format: byte
+          type: string
+      type: object
+    ImageDescriptionUpsert:
+      example:
+        imageId: ""
+        description: description
+      properties:
+        imageId:
+          description: The image ID
+          type: long
+        description:
+          description: The image description
           type: string
       type: object
     InternalServerError:

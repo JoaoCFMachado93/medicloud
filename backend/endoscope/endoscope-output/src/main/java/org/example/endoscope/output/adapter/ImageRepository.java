@@ -46,4 +46,13 @@ public class ImageRepository implements ImageRepositoryPort {
     public void deleteImage(long imageId) {
         imageJpaRepository.deleteById(imageId);
     }
+
+    @Override
+    public void editImageDescription(Long imageId, String description) {
+        imageJpaRepository.findById(imageId)
+                .ifPresent(image -> {
+                    image.setDescription(description);
+                    imageJpaRepository.save(image);
+                });
+    }
 }

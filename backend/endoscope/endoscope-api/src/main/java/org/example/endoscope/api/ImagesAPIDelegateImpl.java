@@ -4,6 +4,7 @@ package org.example.endoscope.api;
 import lombok.extern.slf4j.Slf4j;
 import org.example.endoscope.api.mapper.directory.ImageConverter;
 import org.example.endoscope.api.openapi.ImageApiDelegate;
+import org.example.endoscope.api.openapi.model.ImageDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.ImageEntity;
 import org.example.endoscope.core.driver.ImageServicePort;
 import org.springframework.http.ResponseEntity;
@@ -51,6 +52,15 @@ public class ImagesAPIDelegateImpl implements ImageApiDelegate {
     public ResponseEntity<Void> deleteImage(Integer imageId) {
         log.info("Deleting image by id: {}", imageId);
         imageServicePort.deleteImage(imageId);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<Void> editImageDescription(ImageDescriptionUpsert imageDescriptionUpsert) {
+        log.info("Editing image description: {}", imageDescriptionUpsert);
+        Long imageId = imageDescriptionUpsert.getImageId();
+        String description = imageDescriptionUpsert.getDescription();
+        imageServicePort.editImageDescription(imageId, description);
         return ResponseEntity.ok().build();
     }
 }
