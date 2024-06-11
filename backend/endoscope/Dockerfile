@@ -11,5 +11,4 @@ ENV PORT=${PORT}
 COPY --from=build /tmp/target/*.jar app.jar
 RUN useradd runtime
 USER runtime
-RUN mkdir /app
-ENTRYPOINT [ "java", "-Djava.io.tmpdir=/app", "-Dserver.port=${PORT}", "-jar", "app.jar" ]
+ENTRYPOINT [ "java", "-Djava.io.tmpdir=/tmp", "-Dserver.port=${PORT}", "-jar", "app.jar" ]
