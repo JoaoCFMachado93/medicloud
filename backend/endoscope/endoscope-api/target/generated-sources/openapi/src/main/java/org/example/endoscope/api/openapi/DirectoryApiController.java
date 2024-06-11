@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-11T20:20:34.275098+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-11T20:41:51.207395+01:00[Europe/Lisbon]")
 @Controller
 @RequestMapping("${openapi.aPIForEndoscope.base-path:}")
 public class DirectoryApiController implements DirectoryApi {

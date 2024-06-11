@@ -32,8 +32,6 @@
         <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <build-helper-maven-plugin.version>3.4.0</build-helper-maven-plugin.version>
-        <jmxtools.version>1.2.1</jmxtools.version>
-        <jmxri.version>1.2.1</jmxri.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <jwt.version>0.11.5</jwt.version>
 
@@ -94,16 +92,6 @@
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${javax.servlet-api.version}</version>
                 <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.jdmk</groupId>
-                <artifactId>jmxtools</artifactId>
-                <version>${jmxtools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.jmx</groupId>
-                <artifactId>jmxri</artifactId>
-                <version>${jmxri.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mapstruct</groupId>

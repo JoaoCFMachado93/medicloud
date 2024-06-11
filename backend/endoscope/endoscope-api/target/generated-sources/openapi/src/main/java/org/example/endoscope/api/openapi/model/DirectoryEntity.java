@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * DirectoryEntity
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-11T20:20:34.275098+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-11T20:41:51.207395+01:00[Europe/Lisbon]")
 public class DirectoryEntity {
 
   private Integer directoryId;
