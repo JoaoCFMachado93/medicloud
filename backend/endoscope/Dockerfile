@@ -1,4 +1,3 @@
-
 # Use eclipse-temurin:21-jdk as build environment
 FROM eclipse-temurin:21-jdk as build
 COPY . /app
@@ -12,4 +11,5 @@ ENV PORT=${PORT}
 COPY --from=build /tmp/target/*.jar app.jar
 RUN useradd runtime
 USER runtime
+RUN mkdir /app
 ENTRYPOINT [ "java", "-Djava.io.tmpdir=/app", "-Dserver.port=${PORT}", "-jar", "app.jar" ]
