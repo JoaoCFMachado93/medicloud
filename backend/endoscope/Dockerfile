@@ -2,7 +2,7 @@ FROM eclipse-temurin:21-jdk as build
 COPY . /app
 WORKDIR /app
 RUN ./mvnw package -DskipTests
-RUN mv -f target/*.jar app.jar
+RUN mv -f endoscope-application/target/*.jar app.jar
 
 FROM eclipse-temurin:21-jre
 ARG PORT
