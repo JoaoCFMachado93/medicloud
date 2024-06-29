@@ -1,14 +1,11 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { useAuth } from "./components/AuthProvider";
 import Home from "./components/Home";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
+import AboutEndoscope from "./components/AboutEndoscope";
+import Contributors from "./components/Contributors";
 
 const AppRoutes = () => {
   const { userIsAuthenticated } = useAuth();
@@ -28,6 +25,8 @@ const AppRoutes = () => {
         />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
+        <Route path="/about-endoscope" element={<AboutEndoscope />} />
+        <Route path="/contributors" element={<Contributors />} />
       </Routes>
     </Router>
   );

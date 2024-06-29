@@ -1,0 +1,45 @@
+.contributors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .contributor {
+    display: flex;
+    align-items: center;
+    width: 80%; /* Adjust width as needed */
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc; /* Optional: Add a border between contributors */
+    padding-bottom: 20px; /* Optional: Add padding between contributors */
+  }
+  
+  .contributor-image {
+    flex: 0 0 20%; /* Adjust image column width as needed */
+    margin-right: 20px; /* Optional: Add margin between image and info */
+  }
+  
+  .contributor-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%; /* Optional: Round the images */
+  }
+  
+  .contributor-info {
+    flex: 1;
+  }
+  
+  .back-button-container {
+    margin-top: 20px;
+  }
+  
+  .back-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  

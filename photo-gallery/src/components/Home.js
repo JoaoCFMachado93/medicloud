@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import DirectoryContainer from "./DirectoryContainer";
 import ImageContainer from "./ImageContainer";
 import { useAuth } from "./AuthProvider";
@@ -71,6 +72,16 @@ const Home = () => {
       </div>
       <div className="content">
         <div className="album-container">
+          <div className="about-link-container">
+            <Link to="/about-endoscope" className="about-link">
+              About Endoscope
+            </Link>
+          </div>
+          <div className="about-link-container">
+            <Link to="/contributors" className="about-link">
+              Contributors
+            </Link>
+          </div>
           <DirectoryContainer
             onSelectAlbum={handleSelectAlbum}
             onImageAdded={handleImageAdded}
