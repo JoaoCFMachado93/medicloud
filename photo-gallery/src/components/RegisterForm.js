@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DatePicker from "react-datepicker"; // Import DatePicker component
-import "react-datepicker/dist/react-datepicker.css"; // Import DatePicker styles
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   FaEnvelope,
   FaLock,
@@ -32,11 +32,11 @@ const RegisterForm = () => {
     gender: "",
     fullName: "",
     age: "",
-    dateOfBirth: new Date(), // Initialize date of birth with current date
+    dateOfBirth: new Date(),
     countryOfOrigin: "",
     workLocation: "",
     workPlaceSetting: "",
-    medicalId: "",
+    medicalId: "", // Initially empty
     medicalSpeciality: "",
     education: "",
     role: "user",
@@ -78,33 +78,34 @@ const RegisterForm = () => {
       role,
     } = formData;
 
-    if (
-      !email ||
-      !password ||
-      !salutation ||
-      !gender ||
-      !fullName ||
-      !age ||
-      !dateOfBirth ||
-      !countryOfOrigin ||
-      !workLocation ||
-      !workPlaceSetting ||
-      !medicalId ||
-      !medicalSpeciality ||
-      !education ||
-      !role
-    ) {
-      setIsError(true);
-      return;
-    }
-
     try {
+      const body = {
+        email,
+        password,
+        salutation,
+        gender,
+        fullName,
+        age,
+        dateOfBirth,
+        countryOfOrigin,
+        workLocation,
+        workPlaceSetting,
+        medicalSpeciality,
+        education,
+        role,
+      };
+
+      // Only include medicalId in the request if it is populated
+      if (medicalId) {
+        body.medicalId = medicalId;
+      }
+
       const response = await fetch(`${backendBaseUrl}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(body),
       });
 
       if (!response.ok) {
@@ -217,17 +218,19 @@ const RegisterForm = () => {
               </select>
             </div>
           </div>
-          <div className="input-group">
-            <FaCalendarAlt className="input-icon" />
+          <div className="input-group date-of-birth-group">
+            <FaCalendarAlt className="input-icon date-icon" />
+            <label htmlFor="dateOfBirth" className="date-label">Date of Birth</label>
             <DatePicker
+              id="dateOfBirth"
               selected={formData.dateOfBirth}
               onChange={handleDateChange}
               dateFormat="yyyy-MM-dd"
               showYearDropdown
               scrollableYearDropdown
-              yearDropdownItemNumber={15} // Adjust the number of years to show
+              yearDropdownItemNumber={15}
               showMonthDropdown
-              placeholderText="Date of Birth"
+              placeholderText="Select Date"
               required
             />
           </div>
@@ -288,29 +291,27 @@ const RegisterForm = () => {
               value={formData.medicalId}
               onChange={handleChange}
               placeholder="Medical ID"
-              required
             />
           </div>
           <div className="input-group">
             <FaIdCard className="input-icon" />
             <div className="custom-select-wrapper">
-            <select
-              name="medicalSpeciality"
-              value={formData.medicalSpeciality}
-              onChange={handleChange}
-              className="custom-select"
-              required
-            >
-              <option value="">Select Medical Speciality</option>
-              {MEDICAL_SPECIALITY.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
+              <select
+                name="medicalSpeciality"
+                value={formData.medicalSpeciality}
+                onChange={handleChange}
+                className="custom-select"
+                required
+              >
+                <option value="">Select Medical Speciality</option>
+                {MEDICAL_SPECIALITY.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-                    </div>
-
           <div className="input-group">
             <FaBook className="input-icon" />
             <input
@@ -325,7 +326,7 @@ const RegisterForm = () => {
           <button className="register-form-button">Register</button>
         </form>
         {isError && (
-          <p>Error: Unable to register. Please fill all required fields.</p>
+          <p>Error: Unable to register. Something went wrong.</p>
         )}
         <div className="login-message">
           <p>

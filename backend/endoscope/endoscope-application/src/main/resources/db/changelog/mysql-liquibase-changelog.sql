@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS user (
     country_of_origin VARCHAR(256) NOT NULL,
     work_location VARCHAR(256) NOT NULL,
     work_place_setting VARCHAR(256) NOT NULL,
-    medical_id VARCHAR(256) NOT NULL,
+    medical_id VARCHAR(256),
     medical_speciality VARCHAR(256) NOT NULL,
     education VARCHAR(256) NOT NULL,
     role VARCHAR(256) NOT NULL

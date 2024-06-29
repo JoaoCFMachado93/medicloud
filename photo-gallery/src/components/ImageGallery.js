@@ -72,9 +72,11 @@ const ImageGallery = ({ images, fetchImages, onDeleteImage }) => {
             )}
           </div>
           <div className="image-details">
-            <p>Uploaded by: {image.uploadedBy}</p>
             <p>Upload Date: {new Date(image.uploadDate).toLocaleDateString()}</p>
-            <p>Description: {image.description}</p>
+            <div
+              className="description"
+              dangerouslySetInnerHTML={{ __html: image.description.replace(/\n/g, "<br />") }}
+            />
           </div>
         </div>
       ))}

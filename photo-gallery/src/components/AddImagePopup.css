@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000; /* Ensure the overlay is above all other content */
 }
 
 .modal {
@@ -18,6 +19,8 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   width: 400px;
   max-width: 90%;
+  z-index: 1010; /* Ensure the modal content is above the overlay */
+  position: relative; /* Ensure the modal is positioned relative to the overlay */
 }
 
 .close-button {
@@ -28,6 +31,7 @@
   color: #777;
   background: none;
   border: none;
+  z-index: 1020; /* Ensure the close button is above the modal content */
 }
 
 .input-group {

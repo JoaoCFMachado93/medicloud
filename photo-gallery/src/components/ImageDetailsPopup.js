@@ -73,7 +73,6 @@ const ImageDetailsPopup = ({
           <button onClick={handleZoomOut}>Zoom Out</button>
         </div>
         <div className="image-details-container">
-          <p>Uploaded by: {uploadedBy}</p>
           <p>Upload Date: {new Date(uploadDate).toLocaleDateString()}</p>
           {isAdmin && isEditing ? (
             <div>
