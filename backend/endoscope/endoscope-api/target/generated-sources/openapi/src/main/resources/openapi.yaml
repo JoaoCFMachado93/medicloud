@@ -165,6 +165,97 @@ paths:
       x-accepts: application/json
       x-tags:
       - tag: directory
+  /directories/{directoryId}:
+    delete:
+      description: Delete directory
+      operationId: deleteDirectory
+      parameters:
+      - explode: false
+        in: path
+        name: directoryId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: Successful operation
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: Delete directory
+      tags:
+      - directory
+      x-accepts: application/json
+      x-tags:
+      - tag: directory
+    get:
+      description: Get directory by ID
+      operationId: getDirectoryById
+      parameters:
+      - explode: false
+        in: path
+        name: directoryId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryEntity'
+          description: OK
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: Get directory by ID
+      tags:
+      - directory
+      x-accepts: application/json
+      x-tags:
+      - tag: directory
+    post:
+      description: Edit directory
+      operationId: editDirectory
+      parameters:
+      - explode: false
+        in: path
+        name: directoryId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryEntityUpdate'
+        description: Directory to edit
+        required: true
+      responses:
+        "200":
+          description: OK
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: Edit directory
+      tags:
+      - directory
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: directory
   /directories/subDirectories/{directoryId}:
     get:
       description: Get sub directories
@@ -533,6 +624,18 @@ components:
         imageCount:
           description: The number of images in the directory
           type: integer
+        directoryPosition:
+          description: The position of the directory
+          type: integer
+      type: object
+    DirectoryEntityUpdate:
+      example:
+        directoryPosition: 0
+        directoryName: directoryName
+      properties:
+        directoryName:
+          description: The directory name
+          type: string
         directoryPosition:
           description: The position of the directory
           type: integer

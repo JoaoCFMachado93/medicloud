@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * A delegate to be called by the {@link ImageApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-30T17:53:23.207634+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-30T20:43:46.919375+01:00[Europe/Lisbon]")
 public interface ImageApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {

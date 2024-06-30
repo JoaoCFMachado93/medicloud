@@ -38,7 +38,7 @@
 }
 
 .image-count-bubble {
-  background-color: #008000; /* Tomato color */
+  background-color: #008000; /* Green color */
   color: white;
   padding: 5px 10px;
   border-radius: 15px;
@@ -54,13 +54,14 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .dropdown-menu {
   position: absolute;
   top: 100%;
   right: 0; /* Align menu to the right */
-  background-color: rgba(255, 255, 255, 1); /* Set background color with full opacity */
+  background-color: #fff; /* Set background color */
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -95,7 +96,7 @@
   font-size: 16px; /* Font size */
   cursor: pointer; /* Pointer cursor */
   border-radius: 4px; /* Rounded corners */
-  margin-left: 10px; /* Add margin to the left */
+  margin-bottom: 10px; /* Add margin to the bottom */
 }
 
 .create-directory-button:hover {

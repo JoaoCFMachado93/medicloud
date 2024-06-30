@@ -48,6 +48,11 @@ public class ImageRepository implements ImageRepositoryPort {
     }
 
     @Override
+    public void deleteAllImagesInDirectory(long directoryId) {
+        imageJpaRepository.deleteAllByDirectory_DirectoryId(directoryId);
+    }
+
+    @Override
     public void editImageDescription(Long imageId, String description) {
         imageJpaRepository.findById(imageId)
                 .ifPresent(image -> {

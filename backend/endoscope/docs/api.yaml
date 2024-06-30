@@ -155,6 +155,82 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
 
+  /directories/{directoryId}:
+    get:
+      tags:
+        - directory
+      summary: Get directory by ID
+      description: Get directory by ID
+      operationId: getDirectoryById
+      parameters:
+        - name: directoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryEntity'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    post:
+      tags:
+        - directory
+      summary: Edit directory
+      description: Edit directory
+      operationId: editDirectory
+      parameters:
+        - name: directoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Directory to edit
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryEntityUpdate'
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    delete:
+      tags:
+        - directory
+      summary: Delete directory
+      description: Delete directory
+      operationId: deleteDirectory
+      parameters:
+        - in: path
+          name: directoryId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
   /directories/subDirectories/{directoryId}:
     get:
       tags:
@@ -473,6 +549,16 @@ components:
         imageCount:
           type: integer
           description: The number of images in the directory
+        directoryPosition:
+          type: integer
+          description: The position of the directory
+
+    DirectoryEntityUpdate:
+      type: object
+      properties:
+        directoryName:
+          type: string
+          description: The directory name
         directoryPosition:
           type: integer
           description: The position of the directory

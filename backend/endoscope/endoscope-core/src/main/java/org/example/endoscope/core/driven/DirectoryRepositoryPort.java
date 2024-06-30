@@ -23,4 +23,12 @@ public interface DirectoryRepositoryPort {
     void incrementImageCount(long directoryId);
 
     int getDirectoryPosition(long directoryId);
+
+    Directory getDirectoryById(long directoryId);
+
+    void editDirectory(long directoryId,
+                       String directoryName,
+                       Integer directoryPosition);
+
+    void deleteDirectory(long directoryId);
 }
