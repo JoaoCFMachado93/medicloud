@@ -17,4 +17,10 @@ public interface DirectoryRepositoryPort {
     void createSubDirectories(List<Directory> subDirectories);
 
     void addOrEditDirectoryDescription(Long directory, String description);
+
+    int getNumberOfImagesInDirectory(long directoryId);
+
+    void incrementImageCount(long directoryId);
+
+    int getDirectoryPosition(long directoryId);
 }

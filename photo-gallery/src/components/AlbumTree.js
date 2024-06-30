@@ -192,7 +192,8 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
           className={`album ${selectedAlbum === album ? "selected" : ""}`}
           onClick={() => handleAlbumClick(album)}
         >
-          {album.directoryName}
+          <span>{album.directoryName}</span>
+          <span className="image-count-bubble">{album.imageCount}</span>
           {renderDropdown(album.directoryId)}
         </div>
         {subAlbums[album.directoryId] &&

@@ -68,4 +68,27 @@ public class DirectoryRepository implements DirectoryRepositoryPort {
                     directoryJpaRepository.save(directoryEntity);
                 });
     }
+
+    @Override
+    public int getNumberOfImagesInDirectory(long directoryId) {
+        return directoryJpaRepository.findById(directoryId)
+                .map(DirectoryEntity::getImageCount)
+                .orElse(0);
+    }
+
+    @Override
+    public void incrementImageCount(long directoryId) {
+        directoryJpaRepository.findById(directoryId)
+                .ifPresent(directoryEntity -> {
+                    directoryEntity.setImageCount(directoryEntity.getImageCount() + 1);
+                    directoryJpaRepository.save(directoryEntity);
+                });
+    }
+
+    @Override
+    public int getDirectoryPosition(long directoryId) {
+        return directoryJpaRepository.findById(directoryId)
+                .map(DirectoryEntity::getDirectoryPosition)
+                .orElse(0);
+    }
 }

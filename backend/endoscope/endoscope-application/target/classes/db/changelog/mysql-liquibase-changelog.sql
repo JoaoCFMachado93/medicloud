@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS directory (
     directory_name VARCHAR(256) NOT NULL,
     directory_description VARCHAR(1024),
     parent_directory_id BIGINT,
+    image_count int,
+    directory_position int,
     FOREIGN KEY (parent_directory_id) REFERENCES directory(directory_id)
 );
 

@@ -470,6 +470,12 @@ components:
         parentDirectory:
           type: integer
           description: The parent directory id
+        imageCount:
+          type: integer
+          description: The number of images in the directory
+        directoryPosition:
+          type: integer
+          description: The position of the directory
 
     DirectoryDescriptionUpsert:
       type: object

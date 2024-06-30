@@ -13,5 +13,7 @@ public class Directory {
     private final String directoryName;
     private final String directoryDescription;
     private final long parentDirectory;
+    private final int imageCount;
+    private final int directoryPosition;
 
 }

@@ -511,6 +511,8 @@ components:
       type: object
     DirectoryEntity:
       example:
+        imageCount: 1
+        directoryPosition: 5
         parentDirectory: 6
         directoryId: 0
         directoryDescription: directoryDescription
@@ -527,6 +529,12 @@ components:
           type: string
         parentDirectory:
           description: The parent directory id
+          type: integer
+        imageCount:
+          description: The number of images in the directory
+          type: integer
+        directoryPosition:
+          description: The position of the directory
           type: integer
       type: object
     DirectoryDescriptionUpsert:
